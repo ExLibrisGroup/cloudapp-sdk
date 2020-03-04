@@ -71,3 +71,5 @@ export interface RestErrorResponse extends Response {
 export interface RefreshPageResponse extends BasicResponse { }
 export interface WriteSettingsResponse extends BasicResponse { }
 export interface ReadSettingsResponse extends BasicResponse { }
+export interface WriteConfigResponse extends BasicResponse { }
+export interface ReadConfigResponse extends BasicResponse { }

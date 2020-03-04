@@ -26,5 +26,8 @@ export namespace CloudAppOutgoingEvents {
         return messageBus.communicate({ name: MessageNames.SETTINGS, payload: value });
     }
 
+    export function config(value?: string, messageBus: CloudAppMessages.MessageBus = getMessageBus()): Promise<any> {
+        return messageBus.communicate({ name: MessageNames.CONFIG, payload: value });
+    }
 }
 

@@ -17,7 +17,8 @@ export namespace CloudAppMessages {
         ENTITY_SELECT = 'ENTITY_SELECT',
         RELOAD_PAGE = 'RELOAD_PAGE',
         CLOUDAPP_STORE = 'CLOUDAPP_STORE',
-        SETTINGS = 'SETTINGS'
+        SETTINGS = 'SETTINGS',
+        CONFIG = 'CONFIG'
     }
 
     export interface MessageEventHandler extends _MessageEventHandler<MessageBus> { }

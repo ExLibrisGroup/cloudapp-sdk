@@ -146,6 +146,12 @@
           "description": "CloudApp settings page location (must be in app)",
           "type": "string"
         },
+        "config": {
+          "$id": "#/properties/pages/config",
+          "title": "CloudApp config Page",
+          "description": "CloudApp Institution-level config page location (must be in app)",
+          "type": "string"
+        },
         "help": {
           "$id": "#/properties/pages/help",
           "title": "CloudApp Help Page",
