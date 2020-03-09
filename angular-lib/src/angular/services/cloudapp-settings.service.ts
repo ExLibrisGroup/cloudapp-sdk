@@ -1,11 +1,12 @@
 import { defer, Observable, of } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 import { ReadSettingsResponse, WriteSettingsResponse } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { withErrorChecking } from './service-util';
-import { AbstractControl, FormArray, FormGroup, FormControl } from '@angular/forms';
+import { asFormGroup } from './form-group-util';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class CloudAppSettingsService {
     ));
   }
 
-  getAsFormGroup = (): Observable<FormGroup> => this.get().pipe(map(settings => this.asFormGroup(settings) as FormGroup));
+  getAsFormGroup = (): Observable<FormGroup> => this.get().pipe(map(settings => asFormGroup(settings) as FormGroup));
 
   set(value: any): Observable<WriteSettingsResponse> {
     return withErrorChecking(defer(() => CloudAppOutgoingEvents.settings(JSON.stringify(value || {}))));
@@ -28,20 +29,4 @@ export class CloudAppSettingsService {
 
   remove = (): Observable<WriteSettingsResponse> => this.set('');
 
-  private asFormGroup(object: Object): AbstractControl {
-    if (Array.isArray(object)) {
-      return new FormArray(object.map(entry=>this.asFormGroup(entry)));
-    } else if (typeof object === 'object') {
-      return new FormGroup(this.mapObject(object, obj => this.asFormGroup(obj)));
-    } else {
-      return new FormControl(object);
-    }   
-  }
-
-  private mapObject(object: Object, mapFn: Function) {
-    return Object.keys(object).reduce(function(result, key) {
-      result[key] = mapFn(object[key])
-      return result
-    }, {})
-  }
 }

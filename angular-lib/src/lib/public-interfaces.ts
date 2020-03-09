@@ -47,7 +47,11 @@ export interface PageInfo extends Response {
 }
 
 export interface InitData extends Response {
-    user: { firstName: string, lastName: string },
+    user: { 
+        firstName: string, 
+        lastName: string,
+        isAdmin: boolean
+     },
     lang: string,
     color: string
 }
