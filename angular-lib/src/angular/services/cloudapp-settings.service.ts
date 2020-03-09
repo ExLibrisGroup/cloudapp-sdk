@@ -28,5 +28,5 @@ export class CloudAppSettingsService {
   }
 
   remove = (): Observable<WriteSettingsResponse> => this.set('');
-
+  
 }

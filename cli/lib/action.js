@@ -107,7 +107,7 @@ const extractLabels = args => {
 }
 
 const runNpmCmd = (cmd, onDataOut, onDataErr, onExit) => {
-    const p = spawn(getNpmCmd(), [ "run", "--silent" ].concat(cmd), {cwd: workNg});
+    const p = spawn(getNpmCmd(), [ "run", "--silent" ].concat(cmd), {cwd: workNg, shell: true});
     if (p.error) {
         console.trace(error);
         process.exit(1);

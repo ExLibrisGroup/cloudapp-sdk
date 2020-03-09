@@ -25,7 +25,6 @@ export class MainComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.eventsService.getPageMetadata().subscribe(this.onPageLoad);
     this.pageLoad$ = this.eventsService.onPageLoad(this.onPageLoad);
   }
 

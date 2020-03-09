@@ -18,13 +18,17 @@ export class CloudAppRestService {
   constructor() { }
 
   call(request: string | Request): Observable<any> {
-    let req = request;
+    let req: Request;
     if (typeof request === 'string') {
       req = { url: request };
+    } else {
+      req = request;
     }
-    /* TEMPORARY- calls blocked */
-    (<Request>req).queryParams = Object.assign((<Request>req).queryParams || {}, { fromApp: true })
 
+    /* TEMPORARY- calls blocked */
+    req.queryParams = Object.assign(req.queryParams || {}, { fromApp: true });
+
+    req.url = req.url.replace(/^(\/almaws\/v1)/,"");
     logger.log('Calling API', req);
     return defer(() => CloudAppRest.call(req as Request)).pipe(
       concatMap(response => {

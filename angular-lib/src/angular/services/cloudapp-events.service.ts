@@ -41,14 +41,22 @@ export class CloudAppEventsService implements OnDestroy {
     return this._subscribe(this._onPageLoadSubject$, handler);
   }
 
-  private _init() {
-    this._unsubscribeSubject$ = new Subject<void>();
-    this._initListener('PageLoad', CloudAppIncomingEvents.onPageLoad, { entities: [] }, 'pageInfo');
+  private _getPageMetadata(): Observable<PageInfo> {
+    return this._getObservable(CloudAppOutgoingEvents.getPageMetadata);
   }
 
-  private _initListener(name: string, register: (x: any) => any, defaultValue?: any, prop?: string): void {
+  private _init() {
+    this._unsubscribeSubject$ = new Subject<void>();
+    this._initListener('PageLoad', CloudAppIncomingEvents.onPageLoad, { entities: [] }, 'pageInfo', this._getPageMetadata());
+  }
+
+  private _initListener(name: string, register: (x: any) => any, defaultValue?: any, prop?: string, initValue?: Observable<any>): void {
     this[`_on${name}Subject$`] = new BehaviorSubject(defaultValue);
     this[`_on${name}Handler$`] = (sender: any, data: any, ev: any) => this.handleEvent(name, data, prop);
+    if (initValue) {
+      initValue.subscribe(val => this[`_on${name}Handler$`](null, val, null));
+    }
+																										 
     register(this[`_on${name}Handler$`]);
     logger.log(`Registered handler '_on${name}Handler$'`);
   }

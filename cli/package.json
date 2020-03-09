@@ -1,13 +1,18 @@
 {
   "name": "@exlibris/exl-cloudapp-cli",
-  "version": "0.1.13",
+  "version": "0.1.17",
   "description": "",
   "main": "index.js",
   "bin": {
     "eca": "index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ExLibrisGroup/cloudapp-sdk.git",
+    "directory": "cli"
+  },
   "dependencies": {
-    "@exlibris/exl-cloudapp-base": "^0.1.13",
+    "@exlibris/exl-cloudapp-base": "^0.1.17",
     "args": "5.0.1",
     "chalk": "2.4.2",
     "cheerio": "1.0.0-rc.3",

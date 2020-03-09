@@ -7,7 +7,7 @@ const {cwd, appBaseDir, workNg, work} = require("../lib/dirs");
 syncNgDir()
   .then(() => extractLabels([
       `--input`, `${work}/src`, 
-      `--output`, `${work}/src/i18n/labels.json`,
+      `--output`, `${work}/src/i18n/*.json`,
       `--clean`,`--sort`, `--format`, `namespaced-json`
     ]))
     .catch(error => {
