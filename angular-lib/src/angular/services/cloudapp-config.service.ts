@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { ReadConfigResponse, WriteConfigResponse } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { withErrorChecking } from './service-util';
-import { asFormGroup } from './form-group-util';
+import { toFormGroup } from './form-group-util';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class CloudAppConfigService {
     ));
   }
 
-  getAsFormGroup = (): Observable<FormGroup> => this.get().pipe(map(config => asFormGroup(config) as FormGroup));
+  getAsFormGroup = (): Observable<FormGroup> => this.get().pipe(map(config => toFormGroup(config)));
 
   set(value: any): Observable<WriteConfigResponse> {
     return withErrorChecking(defer(() => CloudAppOutgoingEvents.config(JSON.stringify(value || {}))));
