@@ -44,7 +44,7 @@ const getCsp = (contentSecurity) => {
         "connect-src": "'self'",
         "frame-src": "'self'"
     }
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== "production" && !process.env.LAMBDA_TASK_ROOT) {
         csp["script-src"] = `'unsafe-eval' 'unsafe-inline' ${csp["script-src"]}`;
     }
     if (contentSecurity) {
