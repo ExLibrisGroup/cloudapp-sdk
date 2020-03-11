@@ -13,7 +13,7 @@ const { copyManifest } = require("./config/manifest.js");
 const log = msg => console.log(chalk.gray(`\r\n${msg}\r\n`));
 
 const fileHandlers = {
-    [[indexHtml]]: () => updateIndexHtmlFile(indexHtml)
+    //[[indexHtml]]: () => updateIndexHtmlFile(indexHtml)
 }
 
 const getWorkPaths = path => {
@@ -65,7 +65,6 @@ const syncNgDir = () => {
         return new Promise(resolve => {
             setTimeout(() => {
                 copyManifest();
-                updateIndexHtmlFile(indexHtml);
                 resolve();
             }, 2000);
         });

@@ -123,7 +123,6 @@ const runNpmCmd = (cmd, onDataOut, onDataErr, onExit) => {
 }
 
 const afterBuildProd = () => {
-    updateIndexHtmlFile(`${build}${sep}index.html`);
     fs.removeSync(`${build}${sep}3rdpartylicenses.txt`);
 }
 

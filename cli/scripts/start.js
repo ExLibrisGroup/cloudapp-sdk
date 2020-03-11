@@ -7,6 +7,7 @@ const { updateManifest } = require("../lib/config/manifest");
 const { startDev } = require("../lib/action");
 const { syncNgDir } = require("../lib/work");
 const { install } = require("../lib/install");
+const { indexHtml, updateIndexHtmlFile } = require("../lib/files");
 
 const doInstall = process.argv.indexOf('--no-install') === -1;
 const openBrowser = process.argv.indexOf('--no-open-browser') === -1;
@@ -18,6 +19,7 @@ syncNgDir()
   .then(async () => {
     await checkConfig();
     updateManifest();
+    updateIndexHtmlFile(indexHtml);
     console.log();
     spinner = ora().start("Starting server...");
     startWatcher();

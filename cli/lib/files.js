@@ -14,8 +14,8 @@ const getManifest = () => {
 }
 
 const updateIndexHtmlFile = file => {
-    // const html = fs.readFileSync(file, "utf8");
-    // fs.writeFileSync(file, updateIndexHtml(html, getManifest()));
+    const html = fs.readFileSync(file, "utf8");
+    fs.writeFileSync(file, updateIndexHtml(html, getManifest()));
 }
 
 const updateIndexHtml = (html, manifest) => {
@@ -23,7 +23,7 @@ const updateIndexHtml = (html, manifest) => {
     let $head = $("head");
     if ($head.length === 0) $head = $("<head>");
     $head.find("meta[http-equiv='Content-Security-Policy']").remove();
-    $(`<meta http-equiv="Content-Security-Policy" content="${getCsp(manifest.urls)}">`).prependTo($head);
+    $(`<meta http-equiv="Content-Security-Policy" content="${getCsp(manifest.contentSecurity)}">`).prependTo($head);
     if (process.env.NODE_ENV === "production") {
         $head.find("title").remove();
         const $title = $("<title>");
@@ -34,20 +34,27 @@ const updateIndexHtml = (html, manifest) => {
     return htmlBeautify($.html(), { "preserve_newlines": false });
 }
 
-const getCsp = (urls = []) => {
+const getCsp = (contentSecurity) => {
     const csp = { 
-        "base-uri": "'self'",
-        "object-src": "'none'",
-        "default-src": "'self' data:",
-        "style-src": "'unsafe-inline' 'self'",
-        "script-src": "'unsafe-inline' 'self'"
+        "default-src": "'none'",
+        "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
+        "script-src": "'self'",
+        "font-src": "fonts.gstatic.com",
+        "img-src": "'self' data: https:",
+        "connect-src": "'self'",
+        "frame-src": "'self'"
     }
     if (process.env.NODE_ENV !== "production") {
-        csp["script-src"] = `'unsafe-eval' ${csp["script-src"]}`;
+        csp["script-src"] = `'unsafe-eval' 'unsafe-inline' ${csp["script-src"]}`;
     }
-    if (urls.length > 0) {
-        const whitelist = entities.encodeNonUTF(urls.join(" "));
-        ["default", "style", "script"].forEach(x => csp[`${x}-src`] += ` ${whitelist}`);
+    if (contentSecurity) {
+        Object.entries(contentSecurity).forEach(([key, val]) => {
+            key = camelToKebab(key);
+            if (key in csp && Array.isArray(val)) {
+                const whitelist = entities.encodeNonUTF(val.join(" "));    
+                csp[key] = `${csp[key]} ${whitelist}`;
+            } 
+        })
     }
     let arr = [];
     for (const directive in csp) {
@@ -55,5 +62,7 @@ const getCsp = (urls = []) => {
     }
     return arr.join("; ");
 }
+
+const camelToKebab = string => string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 module.exports = { indexHtml, updateIndexHtmlFile }
