@@ -13,7 +13,7 @@ const { copyManifest } = require("./config/manifest.js");
 const log = msg => console.log(chalk.gray(`\r\n${msg}\r\n`));
 
 const fileHandlers = {
-    //[[indexHtml]]: () => updateIndexHtmlFile(indexHtml)
+    [[indexHtml]]: () => updateIndexHtmlFile(indexHtml)
 }
 
 const getWorkPaths = path => {

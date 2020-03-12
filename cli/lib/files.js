@@ -6,6 +6,7 @@ const entities = new (require("html-entities").XmlEntities)();
 const htmlBeautify = require('js-beautify').html;
 
 const { workNg } = require("./dirs");
+const { kebabCase } = require("lodash");
 
 const indexHtml = [workNg, "src", "index.html"].join(path.sep);
 
@@ -49,7 +50,7 @@ const getCsp = (contentSecurity) => {
     }
     if (contentSecurity) {
         Object.entries(contentSecurity).forEach(([key, val]) => {
-            key = camelToKebab(key);
+            key = kebabCase(key);
             if (key in csp && Array.isArray(val)) {
                 const whitelist = entities.encodeNonUTF(val.join(" "));    
                 csp[key] = `${csp[key]} ${whitelist}`;
@@ -62,7 +63,5 @@ const getCsp = (contentSecurity) => {
     }
     return arr.join("; ");
 }
-
-const camelToKebab = string => string.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
 module.exports = { indexHtml, updateIndexHtmlFile }
