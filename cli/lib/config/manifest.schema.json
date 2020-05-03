@@ -55,6 +55,12 @@
       "description": "Cloud App author name",
       "type": "string"
     },
+    "license": {
+      "$id": "#/properties/license",
+      "title": "Cloud App License",
+      "description": "Link to the license or terms of use for the app",
+      "type": "string"
+    },    
     "title": {
       "$id": "#/properties/title",
       "$ref": "#/definitions/label",

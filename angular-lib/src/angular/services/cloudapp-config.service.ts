@@ -1,9 +1,9 @@
 import { defer, Observable, of } from 'rxjs';
-import { concatMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { ReadConfigResponse, WriteConfigResponse } from '../../lib/public-interfaces';
+import { WriteConfigResponse } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { withErrorChecking } from './service-util';
 import { toFormGroup } from './form-group-util';
@@ -17,7 +17,7 @@ export class CloudAppConfigService {
 
   get(): Observable<any> {
     return withErrorChecking(defer(() => CloudAppOutgoingEvents.config()).pipe(
-      concatMap(response => of(JSON.parse(response.config || '{}')))
+      map(response => JSON.parse(response.config || '{}'))
     ));
   }
 

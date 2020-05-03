@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import { takeUntil, concatMap } from 'rxjs/operators';
+import { takeUntil, concatMap, map } from 'rxjs/operators';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of } from 'rxjs';
 
@@ -31,6 +31,12 @@ export class CloudAppEventsService implements OnDestroy {
 
   getPageMetadata(): Observable<PageInfo> {
     return this._getObservable(CloudAppOutgoingEvents.getPageMetadata, 'pageInfo');
+  }
+
+  getAuthToken(): Observable<string> {
+    return this._getObservable(CloudAppOutgoingEvents.getAuthToken).pipe(
+      map(response => response.jwt)
+    );
   }
 
   refreshPage(): Observable<RefreshPageResponse> {
