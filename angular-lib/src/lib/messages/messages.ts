@@ -18,7 +18,8 @@ export namespace CloudAppMessages {
         RELOAD_PAGE = 'RELOAD_PAGE',
         CLOUDAPP_STORE = 'CLOUDAPP_STORE',
         SETTINGS = 'SETTINGS',
-        CONFIG = 'CONFIG'
+        CONFIG = 'CONFIG',
+        JWT_AUTH_TOKEN = 'JWT_AUTH_TOKEN'
     }
 
     export interface MessageEventHandler extends _MessageEventHandler<MessageBus> { }

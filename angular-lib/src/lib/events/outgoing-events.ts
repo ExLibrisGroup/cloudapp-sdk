@@ -13,6 +13,10 @@ export namespace CloudAppOutgoingEvents {
         return messageBus.communicate({ name: MessageNames.PAGE_METADATA });
     }
 
+    export function getAuthToken(messageBus: CloudAppMessages.MessageBus = getMessageBus()): Promise<any> {
+        return messageBus.communicate({ name: MessageNames.JWT_AUTH_TOKEN });
+    }
+
     export function reloadPage(messageBus: CloudAppMessages.MessageBus = getMessageBus()): Promise<any> {
         return messageBus.communicate({ name: MessageNames.RELOAD_PAGE });
     }

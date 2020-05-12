@@ -51,6 +51,8 @@ export interface InitData extends Response {
     user: { 
         firstName: string, 
         lastName: string,
+        primaryId: string,
+        currentlyAtLibCode: string,
         isAdmin: boolean
      },
     lang: string,
