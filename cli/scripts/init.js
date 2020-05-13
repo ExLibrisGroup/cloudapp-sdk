@@ -15,6 +15,7 @@ const copyBaseDir = () => {
         .then(() => ncp(`${workNg}/src/app`, `${work}/src/app`))
         .then(() => ncp(`${workNg}/src/assets`, `${work}/src/assets`))
         .then(() => fs.copy(`${workNg}/src/main.scss`, `${work}/src/main.scss`))
+        .then(() => fs.copy(`${__dirname}/../lib/config/manifest.schema.json`, `${cwd}/manifest.schema.json`));
 }
 
 const confirmEmptyDir = async () => {

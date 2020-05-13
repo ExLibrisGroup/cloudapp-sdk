@@ -13,7 +13,7 @@
             "fileMatch": [
                 "/manifest.json"
             ],
-            "url": ".vscode/manifest.schema.json"
+            "url": "./manifest.schema.json"
         }
     ]
     
