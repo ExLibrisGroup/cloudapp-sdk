@@ -17,7 +17,7 @@ export class CloudAppRestService {
 
   constructor() { }
 
-  call(request: string | Request): Observable<any> {
+  call<T=any>(request: string | Request): Observable<T> {
     const req: Request = typeof request === 'string' ? { url: request } : request;
     req.url = req.url.replace(/^(\/almaws\/v1)/,"");
     logger.log('Calling API', req);
@@ -28,7 +28,7 @@ export class CloudAppRestService {
           return throwError(new RestError().fromHttpError(response.error));
         }
         logger.log('Response OK', response);
-        return of(response.body as RestResponse);
+        return of(response.body as T);
       })
     );
   }
