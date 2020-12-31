@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators'
 
 export class LazyTranslateLoader implements TranslateLoader {
     getTranslation(lang: string): Observable<any> {
-      return from(import(`../../../../.ng/src/i18n/${lang}.json`)).pipe(catchError(err=>of({})));
+      return from(import(`src/i18n/${lang}.json`)).pipe(catchError(err=>of(null)));
     }
   }
 
