@@ -1,10 +1,10 @@
 import { isEqual } from 'lodash';
 import { takeUntil, concatMap, map } from 'rxjs/operators';
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of } from 'rxjs';
+import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of, fromEventPattern } from 'rxjs';
 
 import { MessageEventHandler } from '../../lib/messages/interfaces';
-import { PageInfo, InitData, RefreshPageResponse } from '../../lib/public-interfaces';
+import { PageInfo, InitData, RefreshPageResponse, Entity } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { CloudAppIncomingEvents } from '../../lib/events/incoming-events';
 import { EventServiceLogger as logger } from './service-loggers';
@@ -24,6 +24,13 @@ export class CloudAppEventsService implements OnDestroy {
     logger.log('Initializing CloudAppEventsService');
     this._init();
   }
+
+  readonly entities$: Observable<Entity[]> = fromEventPattern<PageInfo>(
+    (handler) => this.onPageLoad(handler),
+    (_, subscription) => subscription.unsubscribe()
+  ).pipe(
+    map((pageInfo) => pageInfo.entities ?? [])
+  );
 
   getInitData(): Observable<InitData> {
     return this._getObservable(CloudAppOutgoingEvents.getInitData).pipe(
