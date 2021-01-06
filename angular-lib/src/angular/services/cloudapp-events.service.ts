@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash';
 import { takeUntil, concatMap, map } from 'rxjs/operators';
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of, fromEventPattern } from 'rxjs';
+import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of } from 'rxjs';
 
 import { MessageEventHandler } from '../../lib/messages/interfaces';
 import { PageInfo, InitData, RefreshPageResponse, Entity } from '../../lib/public-interfaces';
@@ -19,18 +19,13 @@ export class CloudAppEventsService implements OnDestroy {
   private pageInfo: any;
   private _onPageLoadHandler: MessageEventHandler<any>;
   private _onPageLoadSubject$: BehaviorSubject<any>;
+  private _entities$: Observable<Entity[]>;
+  get entities$() { return this._entities$ };
 
   constructor() {
     logger.log('Initializing CloudAppEventsService');
     this._init();
   }
-
-  readonly entities$: Observable<Entity[]> = fromEventPattern<PageInfo>(
-    (handler) => this.onPageLoad(handler),
-    (_, subscription) => subscription.unsubscribe()
-  ).pipe(
-    map((pageInfo) => pageInfo.entities ?? [])
-  );
 
   getInitData(): Observable<InitData> {
     return this._getObservable(CloudAppOutgoingEvents.getInitData).pipe(
@@ -79,6 +74,9 @@ export class CloudAppEventsService implements OnDestroy {
   private _init() {
     this._unsubscribeSubject$ = new Subject<void>();
     this._initListener('PageLoad', CloudAppIncomingEvents.onPageLoad, { entities: [] }, 'pageInfo', this._getPageMetadata());
+    this._entities$ = this._onPageLoadSubject$.asObservable().pipe(
+      map((pageInfo) => pageInfo.entities ?? [])
+    );
   }
 
   private _initListener(name: string, register: (x: any) => any, defaultValue?: any, prop?: string, initValue?: Observable<any>): void {
