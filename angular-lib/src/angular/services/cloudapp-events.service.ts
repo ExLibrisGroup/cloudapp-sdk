@@ -4,7 +4,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of } from 'rxjs';
 
 import { MessageEventHandler } from '../../lib/messages/interfaces';
-import { PageInfo, InitData, RefreshPageResponse } from '../../lib/public-interfaces';
+import { PageInfo, InitData, RefreshPageResponse, Entity } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { CloudAppIncomingEvents } from '../../lib/events/incoming-events';
 import { EventServiceLogger as logger } from './service-loggers';
@@ -19,6 +19,8 @@ export class CloudAppEventsService implements OnDestroy {
   private pageInfo: any;
   private _onPageLoadHandler: MessageEventHandler<any>;
   private _onPageLoadSubject$: BehaviorSubject<any>;
+  private _entities$: Observable<Entity[]>;
+  get entities$() { return this._entities$ };
 
   constructor() {
     logger.log('Initializing CloudAppEventsService');
@@ -72,6 +74,9 @@ export class CloudAppEventsService implements OnDestroy {
   private _init() {
     this._unsubscribeSubject$ = new Subject<void>();
     this._initListener('PageLoad', CloudAppIncomingEvents.onPageLoad, { entities: [] }, 'pageInfo', this._getPageMetadata());
+    this._entities$ = this._onPageLoadSubject$.asObservable().pipe(
+      map((pageInfo) => pageInfo.entities ?? [])
+    );
   }
 
   private _initListener(name: string, register: (x: any) => any, defaultValue?: any, prop?: string, initValue?: Observable<any>): void {
