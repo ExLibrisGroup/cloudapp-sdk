@@ -1,7 +1,7 @@
-section>h1 {
-  padding: 5px 10px;
-  border-radius: 4px;
-  margin-top: 10px;
+.entities-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
 }
 
 textarea {
@@ -16,13 +16,16 @@ textarea {
 }
 
 textarea,
-section {
-  margin-bottom: 10px;
+section,
+.mat-card {
+  margin-bottom: 20px;
 }
 
 pre {
   overflow: auto;
   max-height: 200px;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 pre,

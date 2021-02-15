@@ -1,9 +1,9 @@
-import { Subscription } from 'rxjs';
+import { Observable  } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {
-  CloudAppRestService, CloudAppEventsService, Request, HttpMethod,
-  Entity, PageInfo, RestErrorResponse, AlertService
-} from '@exlibris/exl-cloudapp-angular-lib';
+import { CloudAppRestService, CloudAppEventsService, Request, HttpMethod, 
+  Entity, RestErrorResponse, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'app-main',
@@ -12,83 +12,65 @@ import {
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  private pageLoad$: Subscription;
-  pageEntities: Entity[];
-  private _apiResult: any;
-
-  hasApiResult: boolean = false;
   loading = false;
+  selectedEntity: Entity;
+  apiResult: any;
 
-  constructor(private restService: CloudAppRestService,
+  entities$: Observable<Entity[]> = this.eventsService.entities$
+  .pipe(tap(() => this.clear()))
+
+  constructor(
+    private restService: CloudAppRestService,
     private eventsService: CloudAppEventsService,
-    private alert: AlertService ) { }
+    private alert: AlertService 
+  ) { }
 
   ngOnInit() {
-    this.pageLoad$ = this.eventsService.onPageLoad(this.onPageLoad);
   }
 
   ngOnDestroy(): void {
-    this.pageLoad$.unsubscribe();
   }
 
-  get apiResult() {
-    return this._apiResult;
+  entitySelected(event: MatRadioChange) {
+    const value = event.value as Entity;
+    this.loading = true;
+    this.restService.call<any>(value.link)
+    .pipe(finalize(()=>this.loading=false))
+    .subscribe(
+      result => this.apiResult = result,
+      error => this.alert.error('Failed to retrieve entity: ' + error.message)
+    );
   }
 
-  set apiResult(result: any) {
-    this._apiResult = result;
-    this.hasApiResult = result && Object.keys(result).length > 0;
-  }
-
-  onPageLoad = (pageInfo: PageInfo) => {
-    this.pageEntities = pageInfo.entities;
-    if ((pageInfo.entities || []).length == 1) {
-      const entity = pageInfo.entities[0];
-      this.restService.call(entity.link).subscribe(result => this.apiResult = result);
-    } else {
-      this.apiResult = {};
-    }
+  clear() {
+    this.apiResult = null;
+    this.selectedEntity = null;
   }
 
   update(value: any) {
-    this.loading = true;
-    let requestBody = this.tryParseJson(value);
-    if (!requestBody) {
-      this.loading = false;
-      return this.alert.error('Failed to parse json');
-    }
-    this.sendUpdateRequest(requestBody);
-  }
+    const requestBody = this.tryParseJson(value)
+    if (!requestBody) return this.alert.error('Failed to parse json');
 
-  refreshPage = () => {
     this.loading = true;
-    this.eventsService.refreshPage().subscribe({
-      next: () => this.alert.success('Success!'),
-      error: e => {
-        console.error(e);
-        this.alert.error('Failed to refresh page');
-      },
-      complete: () => this.loading = false
-    });
-  }
-
-  private sendUpdateRequest(requestBody: any) {
     let request: Request = {
-      url: this.pageEntities[0].link,
+      url: this.selectedEntity.link, 
       method: HttpMethod.PUT,
       requestBody
     };
-    this.restService.call(request).subscribe({
+    this.restService.call(request)
+    .pipe(finalize(()=>this.loading=false))
+    .subscribe({
       next: result => {
         this.apiResult = result;
-        this.refreshPage();
+        this.eventsService.refreshPage().subscribe(
+          ()=>this.alert.success('Success!')
+        );
       },
       error: (e: RestErrorResponse) => {
-        this.alert.error('Failed to update data');
+        this.alert.error('Failed to update data: ' + e.message);
         console.error(e);
-        this.loading = false;
       }
-    });
+    });    
   }
 
   private tryParseJson(value: any) {
@@ -99,5 +81,4 @@ export class MainComponent implements OnInit, OnDestroy {
     }
     return undefined;
   }
-
 }

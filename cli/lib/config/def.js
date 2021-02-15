@@ -7,12 +7,18 @@ const configDef = {
       validate: notEmpty
     }
   },
-  description: {
+  subtitle: {
     question: {
-      message: "App description: ",
+      message: "App subtitle: ",
       validate: notEmpty
     }
   },
+  author: {
+    question: {
+      message: "App author: ",
+      validate: notEmpty
+    }
+  },  
   env: {
     question: {
       message: "Environment URL: ",

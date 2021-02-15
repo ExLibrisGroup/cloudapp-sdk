@@ -28,6 +28,7 @@ cloudapp-alert {
     padding: .75rem 1.25rem;
     margin-bottom: 0.5rem;
     border: 1px solid transparent;
+    overflow-wrap: break-word;
     /*border-radius: .25rem;*/
   }
   
@@ -39,6 +40,7 @@ cloudapp-alert {
     color: #000;
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
+    margin-left: 10px;
   }
   
   a.close {

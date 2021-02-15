@@ -57,10 +57,14 @@ body[class*=cloudapp-theme]
     margin: 2px 8px auto 0;
   }
   /* Responsively wrap label in checkbox */
-  .mat-checkbox-label {
+  .mat-checkbox-label,
+  .mat-radio-label-content {
     white-space: normal;
     line-height: 1.3em;
     padding-right: 7px;
+  }
+  .mat-radio-button {
+    margin: 5px;
   }
   /* Spacing in list */
   .mat-list-base .mat-list-item {

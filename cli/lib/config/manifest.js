@@ -13,7 +13,7 @@ const copyManifest = () => {
 
 const updateManifest = () => {
     const manifest = omit(require(`${cwd}/manifest.json`), ["$schema"]);
-    const config = pickBy(pick(getConfig(), ["name", "title", "description"]),
+    const config = pickBy(pick(getConfig(), ["name", "title", "subtitle", "author"]),
         x => typeof x !== 'undefined' && `${x}`.trim().length > 0);
     const obj = Object.assign({ id: config.name }, omit(config, ["name"]), manifest);
     const updated = JSON.stringify(obj, null, 3);
