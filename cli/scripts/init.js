@@ -41,7 +41,7 @@ const confirmExistingApp = async () => {
         message: "Do you want to reconfigure this existing app?",
         initial: false
     });
-    if (response.value) return Promise.resolve({title: 'default', subtitle: 'default'});
+    if (response.value) return Promise.resolve({title: 'default', subtitle: 'default', author: 'default'});
     return Promise.reject(new Error("Existing app detected."));
 }
 

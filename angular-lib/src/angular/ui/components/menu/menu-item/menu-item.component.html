@@ -1,0 +1,9 @@
+<mat-card [routerLink]="routerLink">
+  <mat-card-header>
+    <span mat-card-avatar [class]="icon"></span>
+    <mat-card-title>{{title | truncate:13:false:''}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>
