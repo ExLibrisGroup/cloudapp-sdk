@@ -72,6 +72,18 @@ const buildProd = (args, onDone) => {
     runNpmCmd(cmd, onDataOut, onDataErr, onExit);
 }
 
+const test = (args) => {
+    const cmd = [ "test", "--" ].concat(args);
+    const onDataOut = data => {
+        console.log(data.toString())
+    }
+    const onDataErr = data => console.error(chalk.redBright(data.toString()));
+    const onExit = error => {
+        console.log(chalk.green('Done'));
+    }
+    runNpmCmd(cmd, onDataOut, onDataErr, onExit);
+}
+
 const generate = args => {
     const files = [];
     const cmd = [ "generate", "--" ].concat(args).concat(["--defaults", "--skip-tests", "--interactive=false"]);
@@ -118,8 +130,10 @@ const runNpmCmd = (cmd, onDataOut, onDataErr, onExit) => {
     let error = false;
     p.stdout.on("data", onDataOut);
     p.stderr.on("data", data => {
-        error = true;
-        onDataErr(data);
+        if (!!data.toString().trim()) {
+            error = true;
+            onDataErr(data);
+        }
     });
     p.on("exit", () => onExit(error));
     process.on("exit", () => p.exit && p.exit());
@@ -134,5 +148,5 @@ const getNpmCmd = () => getCmd("npm")
 
 const getCmd = cmd => `${cmd}${os.platform() === "win32" ? ".cmd" : ""}`;
 
-module.exports = { startDev, buildProd, generate, extractLabels }
+module.exports = { startDev, buildProd, generate, extractLabels, test }
 
