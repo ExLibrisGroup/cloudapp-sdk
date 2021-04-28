@@ -86,7 +86,7 @@ const test = (args) => {
 
 const generate = args => {
     const files = [];
-    const cmd = [ "generate", "--" ].concat(args).concat(["--defaults", "--skip-tests", "--interactive=false"]);
+    const cmd = [ "generate", "--" ].concat(args).concat(["--defaults", "--interactive=false"]);
     const onDataOut = data => {
         const str = data.toString();
         const matches = str.match(/^(?:CREATE|UPDATE)\s+.*$/gm);
