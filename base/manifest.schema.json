@@ -227,6 +227,13 @@
               "type": "boolean",
               "default": false
             },
+            "downloads": {
+              "$id": "#/properties/contentSecurity/sandbox/downloads",
+              "title": "Allow downloads",
+              "description": "Allow the Cloud App to download files",
+              "type": "boolean",
+              "default": false
+            },
             "popups": {
               "$id": "#/properties/contentSecurity/sandbox/popups",
               "title": "Allow popups",
