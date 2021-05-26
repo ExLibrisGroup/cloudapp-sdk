@@ -33,7 +33,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "strongly-typed-events",
-              "lodash"
+              "lodash",
+              "loglevel"
             ]
           },
           "configurations": {
