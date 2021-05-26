@@ -8,8 +8,7 @@
       "lodash": "lodash",
       "uuid": "uuid",
       "strongly-typed-events": "ste",
-      "@ngx-translate/core": "translate-core",
-      "@ngx-translate/http-loader": "httpLoader"
+      "@ngx-translate/core": "translate-core"
     }
   }
 }

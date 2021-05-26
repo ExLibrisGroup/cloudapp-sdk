@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "description": "Library used in Ex Libris Cloud Apps",
-  "license": "https://developers.exlibrisgroup.com/about/terms",
+  "license": "SEE LICENSE IN <LICENSE.md>",
   "scripts": {
     "build": "npx --no-install ng build main && npx --no-install scss-bundle -c scss-bundle.config.json"
   },
@@ -14,7 +14,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@ngx-translate/core": "12.1.2",
+    "@ngx-translate/core": "^13.0.0",
     "loglevel": "1.6.8",
     "ste-core": "1.6.11",
     "ste-events": "1.6.11",
@@ -39,8 +39,7 @@
     "@angular/platform-browser": "11.2.14",
     "@angular/platform-browser-dynamic": "11.2.14",
     "@angular/router": "11.2.14",
-    "@ngx-translate/core": "12.1.2",
-    "@ngx-translate/http-loader": "4.0.0",
+    "@ngx-translate/core": "13.0.0",
     "@types/lodash": "4.14.150",
     "@types/node": "13.13.5",
     "codelyzer": "^6.0.0",

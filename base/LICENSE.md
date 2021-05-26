@@ -1,0 +1,1 @@
+This library is subject to the terms at [https://developers.exlibrisgroup.com/about/terms].
