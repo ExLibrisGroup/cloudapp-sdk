@@ -15,16 +15,13 @@
   "dependencies": {},
   "peerDependencies": {
     "@ngx-translate/core": "12.1.2",
-    "@ngx-translate/http-loader": "4.0.0",
-    "lodash": "4.17.19",
     "loglevel": "1.6.8",
-    "ngx-toastr": "12.0.1",
     "ste-core": "1.6.11",
     "ste-events": "1.6.11",
     "ste-signals": "1.6.11",
     "ste-simple-events": "1.6.11",
     "strongly-typed-events": "1.6.11",
-    "uuid": "8.0.0"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1002.3",
@@ -46,8 +43,8 @@
     "@ngx-translate/http-loader": "4.0.0",
     "@types/lodash": "4.14.150",
     "@types/node": "13.13.5",
-    "codelyzer": "^5.2.2",
-    "lodash": "4.17.19",
+    "codelyzer": "^6.0.2",
+    "lodash": "^4.17.21",
     "loglevel": "1.6.8",
     "ng-packagr": "^10.1.0",
     "ngx-toastr": "12.0.1",
@@ -61,8 +58,10 @@
     "strongly-typed-events": "1.6.11",
     "ts-node": "8.10.1",
     "tsickle": "^0.39.1",
+    "tslib": "^2.2.0",
     "tslint": "~6.1.0",
     "typescript": "4.0.7",
-    "uuid": "8.0.0"
+    "uuid": "8.0.0",
+    "zone.js": "^0.10.3"
   }
 }

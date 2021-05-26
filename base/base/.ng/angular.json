@@ -30,7 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "strongly-typed-events",
+              "lodash"
+            ]
           },
           "configurations": {
             "production": {

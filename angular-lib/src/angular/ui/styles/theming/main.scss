@@ -31,7 +31,6 @@ $cloudapp-color-map: ('blue': $cloudapp-blue-theme,
 
 body {
   @include app-typography();
-  @include cloudapp-color-theme($cloudapp-blue-theme);
 
   &.cloudapp-theme-- {
 
