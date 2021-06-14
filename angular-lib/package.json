@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-angular-lib",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "description": "Library used in Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
@@ -13,16 +13,7 @@
     "directory": "angular-lib"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "@ngx-translate/core": "^13.0.0",
-    "loglevel": "1.6.8",
-    "ste-core": "1.6.11",
-    "ste-events": "1.6.11",
-    "ste-signals": "1.6.11",
-    "ste-simple-events": "1.6.11",
-    "strongly-typed-events": "1.6.11",
-    "uuid": "^8.0.0"
-  },
+  "peerDependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1102.13",
     "@angular-devkit/core": "^11.2.13",
