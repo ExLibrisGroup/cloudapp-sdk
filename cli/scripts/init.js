@@ -7,11 +7,11 @@ const chalk = require("chalk");
 
 const { checkConfig } = require("../lib/config/config");
 const { updateManifest } = require("../lib/config/manifest");
-const {cwd, appBaseDir, workNg, work} = require("../lib/dirs");
+const {cwd, globalBaseDir, workNg, work} = require("../lib/dirs");
 const { syncNgDir } = require("../lib/work");
 
 const copyBaseDir = () => {
-    return ncp(appBaseDir, cwd)
+    return ncp(globalBaseDir, cwd)
         .then(() => ncp(`${workNg}/src/app`, `${work}/src/app`))
         .then(() => ncp(`${workNg}/src/assets`, `${work}/src/assets`))
         .then(() => fs.copy(`${workNg}/src/main.scss`, `${work}/src/main.scss`))

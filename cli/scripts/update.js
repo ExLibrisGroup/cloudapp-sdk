@@ -6,9 +6,9 @@ const compareVersions = require('compare-versions');
 const baseName = '@exlibris/exl-cloudapp-base';
 const { syncNgDir } = require("../lib/work");
 const { install } = require("../lib/install");
-const { appBaseDir, cwd } = require("../lib/dirs");
+const { globalBaseDir, cwd } = require("../lib/dirs");
 
-const { dependencies, devDependencies } = require(`${appBaseDir}/package.json`)
+const { dependencies, devDependencies } = require(`${globalBaseDir}/package.json`)
 const cleanVer = ver => ver.replace(/^[\^~]+/g, '');
 
 syncNgDir()
