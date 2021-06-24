@@ -10,9 +10,9 @@ const { getConfig } = require("./config/config");
 const { updateIndexHtmlFile } = require("./files");
 const { copyNg } = require("./work");
 
-const startDev = (onStart, openBrowser) => {
+const startDev = (onStart, openBrowser, args = []) => {
     let started = false;
-    const cmd = [ "start" ];
+    const cmd = [ "start", "--" ].concat(args);
     const onDataOut = data => {
         const str = data.toString();
         if (!started && str.toString().indexOf("open your browser") > -1) {

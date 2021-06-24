@@ -1,6 +1,6 @@
 const ora = require("ora");
 const chalk = require("chalk");
-
+const { without } = require("lodash");
 const { startWatcher } = require("../lib/watch");
 const { checkConfig } = require("../lib/config/config");
 const { updateManifest } = require("../lib/config/manifest");
@@ -13,6 +13,7 @@ const openBrowser = process.argv.indexOf('--no-open-browser') === -1;
 
 doInstall && install();
 
+const args = without(process.argv.slice(3), '--no-install', '--no-open-browser');
 let spinner;
 syncNgDir()
   .then(async () => {
@@ -21,7 +22,7 @@ syncNgDir()
     console.log();
     spinner = ora().start("Starting server...");
     startWatcher();
-    startDev(() => spinner.stop(), openBrowser);
+    startDev(() => spinner.stop(), openBrowser, args);
   })
   .catch(error => {
     spinner && spinner.stop();
