@@ -35,6 +35,7 @@ const startDev = (onStart, openBrowser, args = []) => {
     };
     const onDataErr = data => {
         const str = data.toString();
+        if (str.startsWith("Compil") || ~str.indexOf("bundle")) return;
         if (str.toLowerCase().startsWith("warn")) {
             console.warn(chalk.yellowBright(str.trim()));
         } else {
