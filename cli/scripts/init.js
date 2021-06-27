@@ -17,6 +17,11 @@ const copyBaseDir = () => {
         .then(() => fs.copy(`${workNg}/src/main.scss`, `${work}/src/main.scss`))
 }
 
+const initNg = () => {
+    return fs.ensureDir(workNg)
+        .then(() => fs.copy(`${globalBaseDir}/.ng/angular.json`, `${workNg}/angular.json`)) 
+}
+
 const confirmEmptyDir = async () => {
     if ((fs.readdirSync(cwd)||[]).length === 0) return Promise.resolve();
     console.log(`\r\nWorking directory is not empty. [${cwd}]`)
@@ -47,7 +52,7 @@ const confirmExistingApp = async () => {
 
 const isExistingApp = fs.existsSync(`${cwd}/manifest.json`) && fs.existsSync(`${cwd}/cloudapp`);
 if (isExistingApp) {
-    copyBaseDir().then(confirmExistingApp).then(checkConfig).then(() => {
+    initNg().then(confirmExistingApp).then(checkConfig).then(() => {
         console.log("\r\nConfiguration created for existing app.")
     }).catch(e => {
         console.error(chalk.redBright(`\r\n${e.message}`));
