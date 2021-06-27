@@ -47,7 +47,7 @@ const confirmExistingApp = async () => {
 
 const isExistingApp = fs.existsSync(`${cwd}/manifest.json`) && fs.existsSync(`${cwd}/cloudapp`);
 if (isExistingApp) {
-    syncNgDir().then(confirmExistingApp).then(checkConfig).then(() => {
+    copyBaseDir().then(confirmExistingApp).then(checkConfig).then(() => {
         console.log("\r\nConfiguration created for existing app.")
     }).catch(e => {
         console.error(chalk.redBright(`\r\n${e.message}`));
