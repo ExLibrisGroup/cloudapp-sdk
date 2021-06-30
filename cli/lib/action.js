@@ -63,9 +63,9 @@ const buildProd = (args, onDone) => {
     const onDataErr = data => console.error(chalk.redBright(data.toString()));
     const onExit = error => {
         onDone();
-        if (!error) {
+        const files = fs.readdirSync(`${cwd}${sep}build`);
+        if (files.length > 0) {
             afterBuildProd();
-            const files = fs.readdirSync(`${cwd}${sep}build`);
             console.log(`\r\nGenerated ${files.length} files in ${Date.now() - start}ms\r\n`)
             console.log(chalk.green("./build/" + files.join("\r\n./build/")));
         }
