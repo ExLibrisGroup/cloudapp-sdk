@@ -57,13 +57,14 @@ function getOpenUrl(env, port) {
 
 const buildProd = (args, onDone) => {
     const start = Date.now();
-    fs.removeSync(`${cwd}${sep}build`);
+    const buildDir = `${cwd}${sep}build`;
+    fs.removeSync(buildDir);
     const cmd = [ "build", "--" ].concat(args);
     const onDataOut = () => {}
     const onDataErr = data => console.error(chalk.redBright(data.toString()));
     const onExit = error => {
         onDone();
-        const files = fs.readdirSync(`${cwd}${sep}build`);
+        const files = fs.existsSync(buildDir) && fs.readdirSync(buildDir) || [];
         if (files.length > 0) {
             afterBuildProd();
             console.log(`\r\nGenerated ${files.length} files in ${Date.now() - start}ms\r\n`)
