@@ -34,7 +34,8 @@
             "allowedCommonJsDependencies": [
               "strongly-typed-events",
               "lodash",
-              "loglevel"
+              "loglevel",
+              "ngx-translate-parser-plural-select"
             ]
           },
           "configurations": {

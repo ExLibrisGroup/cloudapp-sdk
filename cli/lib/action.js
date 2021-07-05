@@ -10,6 +10,26 @@ const { getConfig } = require("./config/config");
 const { updateIndexHtmlFile } = require("./files");
 const { copyNg } = require("./work");
 
+/**
+ * A (sisyphean) attempt to suppress information messages on stderr.
+ * See https://github.com/angular/angular-cli/issues/17016
+ * @param {string} err - The error message to compare
+ */
+const suppressErr = err => {
+    return err.startsWith("Compil") || 
+        ~err.indexOf("bundle");
+}
+
+const printError = data => {
+    const str = data.toString().trim();
+    if (suppressErr(str)) return;
+    if (str.toLowerCase().startsWith("warn")) {
+        console.warn(chalk.yellowBright(str));
+    } else {
+        console.error(chalk.redBright(str));
+    }
+}
+
 const startDev = (onStart, openBrowser, args = []) => {
     let started = false;
     const cmd = [ "start", "--" ].concat(args);
@@ -33,15 +53,7 @@ const startDev = (onStart, openBrowser, args = []) => {
             console.log(str.trim());
         }
     };
-    const onDataErr = data => {
-        const str = data.toString();
-        if (str.startsWith("Compil") || ~str.indexOf("bundle")) return;
-        if (str.toLowerCase().startsWith("warn")) {
-            console.warn(chalk.yellowBright(str.trim()));
-        } else {
-            console.error(chalk.redBright(str.trim()));
-        }
-    };
+    const onDataErr = data => printError(data);
     const onExit = () => process.exit();
     runNpmCmd(cmd, onDataOut, onDataErr, onExit);
 }
@@ -61,7 +73,7 @@ const buildProd = (args, onDone) => {
     fs.removeSync(buildDir);
     const cmd = [ "build", "--" ].concat(args);
     const onDataOut = () => {}
-    const onDataErr = data => console.error(chalk.redBright(data.toString()));
+    const onDataErr = data => printError(data);
     const onExit = error => {
         onDone();
         const files = fs.existsSync(buildDir) && fs.readdirSync(buildDir) || [];
