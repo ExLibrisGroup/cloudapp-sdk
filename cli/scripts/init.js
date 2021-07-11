@@ -7,14 +7,19 @@ const chalk = require("chalk");
 
 const { checkConfig } = require("../lib/config/config");
 const { updateManifest } = require("../lib/config/manifest");
-const {cwd, appBaseDir, workNg, work} = require("../lib/dirs");
+const {cwd, globalBaseDir, workNg, work} = require("../lib/dirs");
 const { syncNgDir } = require("../lib/work");
 
 const copyBaseDir = () => {
-    return ncp(appBaseDir, cwd)
+    return ncp(globalBaseDir, cwd)
         .then(() => ncp(`${workNg}/src/app`, `${work}/src/app`))
         .then(() => ncp(`${workNg}/src/assets`, `${work}/src/assets`))
         .then(() => fs.copy(`${workNg}/src/main.scss`, `${work}/src/main.scss`))
+}
+
+const initNg = () => {
+    return fs.ensureDir(workNg)
+        .then(() => fs.copy(`${globalBaseDir}/.ng/angular.json`, `${workNg}/angular.json`)) 
 }
 
 const confirmEmptyDir = async () => {
@@ -47,7 +52,7 @@ const confirmExistingApp = async () => {
 
 const isExistingApp = fs.existsSync(`${cwd}/manifest.json`) && fs.existsSync(`${cwd}/cloudapp`);
 if (isExistingApp) {
-    syncNgDir().then(confirmExistingApp).then(checkConfig).then(() => {
+    initNg().then(confirmExistingApp).then(checkConfig).then(() => {
         console.log("\r\nConfiguration created for existing app.")
     }).catch(e => {
         console.error(chalk.redBright(`\r\n${e.message}`));

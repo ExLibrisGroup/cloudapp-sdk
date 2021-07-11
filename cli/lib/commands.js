@@ -7,6 +7,7 @@ const commands = {
     help: "Display this list of available commands",
     version: "Display the installed version of the CLI",
     test: "Build and start the test server",
+    update: "Update to the latest SDK version and install updated packages",
 }
 
 const subcommands = {

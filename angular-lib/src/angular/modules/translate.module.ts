@@ -1,3 +1,4 @@
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable, from, of } from 'rxjs';
 import { catchError } from 'rxjs/operators'
@@ -8,11 +9,14 @@ export class LazyTranslateLoader implements TranslateLoader {
     }
   }
 
-export function getTranslateModule() {
+@NgModule()
+export class CloudAppTranslateModule {
+  static forRoot(): ModuleWithProviders<TranslateModule> {
     return TranslateModule.forRoot({
         loader: {
             provide: TranslateLoader,
             useClass: (LazyTranslateLoader)
         }
     });
+  }
 }

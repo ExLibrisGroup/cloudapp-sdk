@@ -30,7 +30,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "strongly-typed-events",
+              "lodash",
+              "loglevel",
+              "ngx-translate-parser-plural-select"
+            ]
           },
           "configurations": {
             "production": {
@@ -43,7 +49,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,

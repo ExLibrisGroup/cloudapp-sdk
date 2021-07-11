@@ -63,6 +63,7 @@ done
 # angular-lib
 cd "$WORKDIR/angular-lib"
 bump_version $new_version
+bump_version "^$new_version" package.json '.peerDependencies."@exlibris/exl-cloudapp-base"'
 npm install
 npm run build
 cd dist
