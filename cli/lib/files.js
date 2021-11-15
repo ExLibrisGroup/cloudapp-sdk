@@ -38,7 +38,7 @@ const getCsp = (contentSecurity) => {
         "font-src": "'self' fonts.gstatic.com *.ext.exlibrisgroup.com",
         "img-src": "'self' data: https:",
         "connect-src": "'self'",
-        "frame-src": "'self'"
+        "frame-src": "'self' https:"
     }
     if (process.env.NODE_ENV !== "production" && !process.env.LAMBDA_TASK_ROOT) {
         csp["script-src"] = `'unsafe-eval' 'unsafe-inline' ${csp["script-src"]}`;
