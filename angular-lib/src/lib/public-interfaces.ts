@@ -43,7 +43,9 @@ export enum EntityType {
     REMINDER = 'REMINDER',
     BORROWING_REQUEST = 'BORROWING_REQUEST',
     LENDING_REQUEST = 'LENDING_REQUEST',
-    SET = 'SET'
+    SET = 'SET',
+    /** Esploro */
+    IER = 'IER'
 }
 
 export interface PageInfo extends Response {
