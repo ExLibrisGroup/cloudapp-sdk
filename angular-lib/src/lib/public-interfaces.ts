@@ -44,7 +44,7 @@ export enum EntityType {
     BORROWING_REQUEST = 'BORROWING_REQUEST',
     LENDING_REQUEST = 'LENDING_REQUEST',
     SET = 'SET',
-    /** Esploro */
+    /** Esploro Assets */
     IER = 'IER'
 }
 
