@@ -38,7 +38,7 @@ new_version () {
 
 }
 
-WORKDIR=$(PWD)
+WORKDIR=${PWD}
 bump_part=${1:-patch}
 if [ "$bump_part" == "major" ] || [ "$bump_part" == "minor" ] || [ "$bump_part" == "patch" ]; then
   current_version=$(jq -r '.version' "$WORKDIR/angular-lib/package.json")
