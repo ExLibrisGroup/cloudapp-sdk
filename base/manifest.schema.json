@@ -79,6 +79,18 @@
       "title": "Cloud App Description",
       "description": "Cloud App description text"
     },
+    "isWidget": {
+      "$id": "#/properties/isWidget",
+      "title": "Cloud App allowed as a widget",
+      "description": "Cloud App is designed to be used as a desktop widget",
+      "type": "boolean"
+    },
+    "widgetHeightPx": {
+      "$id": "#/properties/widgetHeightPx",
+      "title": "Cloud App widget height",
+      "description": "Cloud App desktop Widget height in pixels",
+      "type": "number"
+    },
     "icon": {
       "$id": "#/properties/icon",
       "title": "Cloud App Icon",
