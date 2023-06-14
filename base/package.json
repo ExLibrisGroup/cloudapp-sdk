@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-base",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Base project for Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "scripts": {
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@exlibris/exl-cloudapp-angular-lib": "^1.4.4",
+    "@exlibris/exl-cloudapp-angular-lib": "^1.4.5",
     "@biesbjerg/ngx-translate-extract": "~7.0.4",
     "@biesbjerg/ngx-translate-extract-marker": "1.0.0",
     "@ngx-translate/core": "13.0.0",
