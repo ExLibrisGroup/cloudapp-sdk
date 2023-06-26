@@ -63,6 +63,8 @@ export interface InitData extends Response {
         lastName: string,
         primaryId: string,
         currentlyAtLibCode: string,
+        currentlyAtCircDesk: string,
+        currentlyAtDept: string,
         isAdmin: boolean
      },
     lang: string,
