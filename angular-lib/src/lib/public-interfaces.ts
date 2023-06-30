@@ -45,6 +45,11 @@ export enum EntityType {
     LENDING_REQUEST = 'LENDING_REQUEST',
     SET = 'SET',
     PARTNER = 'PARTNER',
+    /** URM-191912 */
+    FEES = 'FEES',
+    IEP = 'IEP',
+    IEE = 'IEE',
+    /** end URM-191912 */
     /** Esploro Assets */
     IER = 'IER'
 }
