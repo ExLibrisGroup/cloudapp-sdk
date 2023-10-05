@@ -33,7 +33,7 @@
     "@types/node": "~13.13.5",
     "lodash": "~4.17.21",
     "loglevel": "~1.6.8",
-    "postcss": "~8.3.0",
+    "postcss": "~8.4.31",
     "rxjs": "~6.5.5",
     "ste-core": "~1.6.11",
     "ste-events": "~1.6.11",
