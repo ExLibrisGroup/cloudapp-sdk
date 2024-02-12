@@ -200,6 +200,17 @@
       "minItems": 0,
       "uniqueItems": true
     },
+    "relevantForInst": {
+      "$id": "#/properties/relevantForInst",
+      "title": "Limit for specific institution codes",
+      "description": "If needed, hide the Cloud App from all institutions except those listed",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
     "contentSecurity": {
       "$id": "#/properties/contentSecurity",
       "type": "object",
