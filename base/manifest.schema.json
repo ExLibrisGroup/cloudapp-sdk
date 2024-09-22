@@ -263,6 +263,13 @@
               "description": "Allow the Cloud App to open popups (such as window.open(), target=\"_blank\", or showModalDialog()). If this keyword is not used, the popup will silently fail to open",
               "type": "boolean",
               "default": false
+            },
+            "popups-to-escape-sandbox": {
+              "$id": "#/properties/contentSecurity/sandbox/popupsEscapeSandbox",
+              "title": "Allow popups to escape sandbox",
+              "description": "Allow the Cloud App to open popups without forcing restrictions upon the landing page (without inheriting the sandboxing)",
+              "type": "boolean",
+              "default": false
             }
           }
         }
