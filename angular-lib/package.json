@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-angular-lib",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "main": "index.js",
   "description": "Library used in Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
@@ -14,7 +14,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@exlibris/exl-cloudapp-base": "^1.4.7"
+    "@exlibris/exl-cloudapp-base": "^1.4.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1102.13",
