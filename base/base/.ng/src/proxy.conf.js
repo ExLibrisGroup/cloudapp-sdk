@@ -13,6 +13,16 @@ const PROXY_CONFIG = {
                 .replace(/__Secure-/g, "KUKUBALALA");
             });
             proxyRes.headers['set-cookie'] = cookies;
+			// Handle Content-Security-Policy header
+			let cspHeader = proxyRes.headers['content-security-policy'];
+			if (cspHeader) {
+				// Remove "upgrade-insecure-requests" from the CSP header
+				proxyRes.headers['content-security-policy'] = cspHeader
+					.split(";")
+					.map(directive => directive.trim())
+					.filter(directive => directive.toLowerCase() !== "upgrade-insecure-requests")
+					.join("; ");
+		}
         },
         onProxyReq: (proxyReq, req, res) => {
             let cookies = req.headers['cookie'];
