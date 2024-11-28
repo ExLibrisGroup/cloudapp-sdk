@@ -15,7 +15,7 @@
     "@exlibris/exl-cloudapp-base": "^1.4.8",
     "args": "^5.0.1",
     "chalk": "^4.0.0",
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "1.0.0-rc.3",
     "chokidar": "^3.4.0",
     "compare-versions": "^3.6.0",
     "esm": "^3.2.25",
