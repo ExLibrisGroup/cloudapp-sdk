@@ -1,0 +1,159 @@
+@mixin _system-overrides() {
+    --sys-background: #fff;
+
+    --sys-surface: var(--sys-background);
+    --sys-surface-bright: var(--sys-background);
+    --sys-surface-variant: var(--sys-background);
+    --sys-surface-container: var(--sys-background);
+
+    --sys-on-surface: #5e5e5e;
+    --sys-on-surface-variant: var(--sys-on-surface);
+    --sys-on-background: var(--sys-on-surface);
+
+    $font-family: Roboto, Arial, Helvetica, sans-serif;
+
+    --sys-body-large: 300 1rem / 1.3rem #{$font-family};
+    --sys-body-large-font: #{$font-family};
+    --sys-body-large-line-height: 1.3rem;
+    --sys-body-large-size: 1rem;
+    --sys-body-large-tracking: 0;
+    --sys-body-large-weight: 300;
+    --sys-body-medium: var(--sys-body-large);
+    --sys-body-medium-font: var(--sys-body-large-font);
+    --sys-body-medium-line-height: var(--sys-body-large-line-height);
+    --sys-body-medium-size: var(--sys-body-large-size);
+    --sys-body-medium-tracking: var(--sys-body-large-tracking);
+    --sys-body-medium-weight: var(--sys-body-large-weight);
+    --sys-body-small: 300 0.875rem / 1.25rem #{$font-family};
+    --sys-body-small-font: #{$font-family};
+    --sys-body-small-line-height: 1.25rem;
+    --sys-body-small-size: 0.875rem;
+    --sys-body-small-tracking: 0.016rem;
+    --sys-body-small-weight: 300;
+
+    --sys-display-large: 500 1.3rem / 3rem #{$font-family};
+    --sys-display-large-font: #{$font-family};
+    --sys-display-large-line-height: 3rem;
+    --sys-display-large-size: 1.3rem;
+    --sys-display-large-tracking: -0.016rem;
+    --sys-display-large-weight: 500;
+    --sys-display-medium: 400 1.2rem / 2.5rem #{$font-family};
+    --sys-display-medium-font: #{$font-family};
+    --sys-display-medium-line-height: 2.5rem;
+    --sys-display-medium-size: 1.2rem;
+    --sys-display-medium-tracking: 0;
+    --sys-display-medium-weight: 400;
+    --sys-display-small: 400 1.1rem / 2rem #{$font-family};
+    --sys-display-small-font: #{$font-family};
+    --sys-display-small-line-height: 2rem;
+    --sys-display-small-size: 1.1rem;
+    --sys-display-small-tracking: 0;
+    --sys-display-small-weight: 400;
+
+    --sys-headline-large: var(--sys-display-large);
+    --sys-headline-large-font: var(--sys-display-large-font);
+    --sys-headline-large-line-height: 1rem;
+    --sys-headline-large-size: var(--sys-display-large-size);
+    --sys-headline-large-tracking: var(--sys-display-large-tracking);
+    --sys-headline-large-weight: var(--sys-display-large-weight);
+    --sys-headline-medium: var(--sys-display-large);
+    --sys-headline-medium-font: var(--sys-display-large-font);
+    --sys-headline-medium-line-height: 1rem;
+    --sys-headline-medium-size: var(--sys-display-large-size);
+    --sys-headline-medium-tracking: var(--sys-display-large-tracking);
+    --sys-headline-medium-weight: var(--sys-display-large-weight);
+    --sys-headline-small: var(--sys-display-medium);
+    --sys-headline-small-font: var(--sys-display-medium-font);
+    --sys-headline-small-line-height: 1rem;
+    --sys-headline-small-size: var(--sys-display-medium-size);
+    --sys-headline-small-tracking: var(--sys-display-medium-tracking);
+    --sys-headline-small-weight: var(--sys-display-medium-weight);
+
+    --sys-label-large: 500 1rem / 1.25rem #{$font-family};
+    --sys-label-large-font: #{$font-family};
+    --sys-label-large-line-height: 1.25rem;
+    --sys-label-large-size: 1rem;
+    --sys-label-large-tracking: 0.006rem;
+    --sys-label-large-weight: 500;
+    --sys-label-large-weight-prominent: 900;
+    --sys-label-medium: 400 0.875rem / 1.25rem Roboto;
+    --sys-label-medium-font: Roboto;
+    --sys-label-medium-line-height: 1.25rem;
+    --sys-label-medium-size: 0.875rem;
+    --sys-label-medium-tracking: 0.006rem;
+    --sys-label-medium-weight: 400;
+    --sys-label-medium-weight-prominent: 900;
+    --sys-label-small: 400 0.75rem / 1rem Roboto;
+    --sys-label-small-font: Roboto;
+    --sys-label-small-line-height: 1rem;
+    --sys-label-small-size: 0.75rem;
+    --sys-label-small-tracking: 0.031rem;
+    --sys-label-small-weight: 400;
+
+    --sys-title-large: 300 1.375rem / 1.75rem #{$font-family};
+    --sys-title-large-font: #{$font-family};
+    --sys-title-large-line-height: 1.75rem;
+    --sys-title-large-size: 1.375rem;
+    --sys-title-large-tracking: 0;
+    --sys-title-large-weight: 300;
+    --sys-title-medium: 500 1rem / 1.5rem #{$font-family};
+    --sys-title-medium-font: #{$font-family};
+    --sys-title-medium-line-height: 1.5rem;
+    --sys-title-medium-size: 1rem;
+    --sys-title-medium-tracking: 0.009rem;
+    --sys-title-medium-weight: 500;
+    --sys-title-small: var(--sys-title-medium);
+    --sys-title-small-font: var(--sys-title-medium-font);
+    --sys-title-small-line-height: var(--sys-title-medium-line-height);
+    --sys-title-small-size: var(--sys-title-medium-size);
+    --sys-title-small-tracking: var(--sys-title-medium-tracking);
+    --sys-title-small-weight: var(--sys-title-medium-weight);
+}
+
+@mixin _mdc-overrides() {
+    --mat-form-field-filled-label-display: block;
+    --mat-form-field-filled-with-label-container-padding-top: 16px;
+    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
+
+    $mdc-button-container-shape: 4px;
+    $mdc-button-container-height: 36px;
+    $mdc-button-horizontal-padding: 16px;
+
+    --mdc-filled-button-container-shape: #{$mdc-button-container-shape};
+    --mdc-filled-button-container-height: #{$mdc-button-container-height};
+    --mat-filled-button-horizontal-padding: #{$mdc-button-horizontal-padding};
+    --mdc-outlined-button-container-shape: #{$mdc-button-container-shape};
+    --mdc-outlined-button-container-height: #{$mdc-button-container-height};
+    --mat-outlined-button-horizontal-padding: #{$mdc-button-horizontal-padding};
+    --mdc-protected-button-container-shape: #{$mdc-button-container-shape};
+    --mdc-protected-button-container-height: #{$mdc-button-container-height};
+    --mat-protected-button-horizontal-padding: #{$mdc-button-horizontal-padding};
+    --mdc-text-button-container-shape: #{$mdc-button-container-shape};
+    --mdc-text-button-container-height: #{$mdc-button-container-height};
+    --mat-text-button-horizontal-padding: #{$mdc-button-horizontal-padding};
+
+    --mdc-dialog-container-shape: 4px;
+    --mat-dialog-container-elevation-shadow: unset;
+
+    --mdc-list-list-item-one-line-container-height: unset;
+    --mdc-secondary-navigation-tab-container-height: 48px;
+
+    --mdc-switch-selected-icon-size: 14px;
+    --mdc-switch-track-height: 20px;
+    --mdc-switch-track-shape: 12px;
+    --mdc-switch-track-width: 40px;
+    --mdc-switch-unselected-icon-size: 12px;
+    --mdc-switch-state-layer-size: 20px;
+    --mat-switch-selected-handle-size: 16px;
+    --mat-switch-pressed-handle-size: 16px;
+    --mat-switch-with-icon-handle-size: 18px;
+    --mat-switch-selected-handle-horizontal-margin: 0 12px;
+    --mat-switch-selected-with-icon-handle-horizontal-margin: 0 20px;
+    --mat-switch-selected-pressed-handle-horizontal-margin: 0 11px;
+    --mat-switch-unselected-handle-horizontal-margin: 0 4px;
+    --mat-switch-unselected-with-icon-handle-horizontal-margin: 0 2px;
+    --mat-switch-unselected-pressed-handle-horizontal-margin: 0 1px;
+    --mat-switch-track-outline-width: 1px;
+    --mat-switch-selected-track-outline-width: 1px;
+    --mat-switch-disabled-unselected-track-outline-width: 1px;
+}

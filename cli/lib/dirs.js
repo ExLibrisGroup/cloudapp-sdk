@@ -1,12 +1,10 @@
-const path = require("path");
+import path from "path";
 
-const cwd = process.cwd();
-const appBaseDir = `${cwd}${path.sep}node_modules${path.sep}@exlibris${path.sep}exl-cloudapp-base${path.sep}base`;
-const globalBaseDir = `${path.dirname(require.resolve("@exlibris/exl-cloudapp-base/package.json"))}/base`;
+export const cwd = process.cwd();
+export const appBaseDir = path.resolve(`${cwd}${path.sep}node_modules${path.sep}@exlibris${path.sep}exl-cloudapp-base${path.sep}base`);
+export const globalBaseDir = path.resolve(`${path.dirname(import.meta.resolve("@exlibris/exl-cloudapp-base/package.json").replace("file:///", ""))}/base`);
 
-const work = `${cwd}${path.sep}cloudapp`;
-const workNg = `${cwd}${path.sep}.ng`;
-const baseNg = `${appBaseDir}${path.sep}.ng`;
-const build = `${cwd}${path.sep}build`;
-
-module.exports = { cwd, appBaseDir, globalBaseDir, work, build, workNg, baseNg }
+export const work = `${cwd}${path.sep}cloudapp`;
+export const workNg = `${cwd}${path.sep}.ng`;
+export const baseNg = `${appBaseDir}${path.sep}.ng`;
+export const build = `${cwd}${path.sep}build`;

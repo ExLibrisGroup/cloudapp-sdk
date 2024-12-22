@@ -1,6 +1,6 @@
-const { MAX_PORT, notEmpty, validateURL, validatePort } = require("./validators");
+import { MAX_PORT, notEmpty, validateURL, validatePort } from "./validators.js";
 
-const configDef = {
+export const configDef = {
   title: {
     question: {
       message: "App title: ",
@@ -38,5 +38,3 @@ const configDef = {
     transform: value => Number(value)
   }
 }
-
-module.exports = configDef;

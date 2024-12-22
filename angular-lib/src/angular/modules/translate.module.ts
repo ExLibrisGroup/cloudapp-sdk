@@ -1,22 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { Observable, from, of } from 'rxjs';
-import { catchError } from 'rxjs/operators'
+import { TranslateLoader, TranslateModule, TranslationObject } from '@ngx-translate/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-export class LazyTranslateLoader implements TranslateLoader {
-    getTranslation(lang: string): Observable<any> {
-      return from(import(`src/i18n/${lang}.json`)).pipe(catchError(err=>of(null)));
-    }
+export class HttpTranslateLoader implements TranslateLoader {
+
+  constructor(private http: HttpClient) { }
+
+  public getTranslation(lang: string): Observable<TranslationObject> {
+    return this.http.get(`i18n/${lang}.json`).pipe(catchError(() => of(null))) as Observable<TranslationObject>;
   }
+
+}
 
 @NgModule()
 export class CloudAppTranslateModule {
   static forRoot(): ModuleWithProviders<TranslateModule> {
     return TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useClass: (LazyTranslateLoader)
-        }
+      loader: {
+        provide: TranslateLoader,
+        useClass: HttpTranslateLoader,
+        deps: [HttpClient]
+      }
     });
   }
 }

@@ -1,116 +1,71 @@
+// @import "reset-css/sass/reset";
+@use "sass:map";
+@use "@angular/material" as mat;
 
-// @import "~reset-css/sass/reset";
-@import "~normalize.css/normalize.css";
+@import "normalize.css/normalize.css";
 
-html {
-  background: #fff;
-  font-family: "Roboto", sans-serif;
-}
-
-a {
-  color: #4164a4;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #1b3c72;
-}
-
-@import "~@angular/material/theming";
 @import url("//fonts.googleapis.com/icon?family=Material+Icons");
-@import url("//fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,800,900,regular,bold");
+@import url("//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-@import "./scss/locals";
-@import "./style-variables.scss";
-@import "./theming/main.scss";
+@import "./fonts/_uxf-icon-font";
+@import "./theming/_themes";
+@import "./_overrides";
 
-@include mat-core();
+@include mat.core();
 
-$primary: mat-palette($mat-blue, 500);
-$accent: mat-palette($mat-blue, 500, A200, A400);
-$warn: mat-palette($mat-blue, 500);
+$app-typography: (
+  plain-family: Roboto,
+  brand-family: Roboto,
+  bold-weight: 900,
+  medium-weight: 500,
+  regular-weight: 300,
+  use-system-variables: true,
+);
 
-$theme: mat-light-theme($primary, $accent, $warn);
+$theme: mat.define-theme(
+  (
+    color: (
+      use-system-variables: true,
+    ),
+    typography: (
+      use-system-variables: true,
+    ),
+    density: (
+      scale: minimum,
+    ),
+  )
+);
 
-@include angular-material-theme($theme);
+@include mat.typography-hierarchy($theme);
 
-$config: mat-typography-config();
+:root {
+  font-size: 14px;
+  color: #333;
+  line-height: 18px;
 
-body, body.mat-typography {
-  font-family: mat-font-family($config);
-  font-weight: $normal-font-weight;
-  font-size: $normal-font-size;
-  padding: 5px;
-  margin: 0;
+  @include mat.system-level-typography($theme);
+  @include mat.system-level-elevation($theme);
+  @include mat.system-level-shape($theme);
+  @include mat.system-level-motion($theme);
+  @include mat.system-level-state($theme);
+
+  body {
+    &.cloudapp-theme-- {
+      @each $color, $theme in $cloudapp-color-map {
+        &#{$color} {
+          @include mat.system-level-colors($theme);
+        }
+      }
+    }
+    &[class*="cloudapp-theme"] {
+      @include _system-overrides();
+      @include mat.all-component-bases($theme);
+      @include mat.all-component-typographies($theme);
+      @include mat.all-component-densities($theme);
+      @include _mdc-overrides();
+      @include mat.all-component-colors($theme);
+    }
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: $bold-font-weight;
-  font-family: mat-font-family($config);
-  color: black;
-}
-
-mark {
-  padding: 0;
-  color: #000;
-  background-color: #fcf8e3;
-}
-
-.mat-menu-content:not(:empty) {
-  padding: 0 !important;
-}
-
-.cdk-overlay-pane {
-  transform: none !important;
-}
-
-.mat-menu-panel {
-  border-radius: 0 0 4px 4px !important;
-}
-
-.mat-expansion-panel-body {
-  padding: 0 24px 15px !important;
-}
-
-.mat-tooltip {
-  font-size: 12px !important;
-  max-width: 200px !important;
-  text-align: center !important;
-}
-
-.multi-line-tooltip {
-  white-space: pre-line !important;
-}
-
-.mat-button {
-  line-height: 32px !important;
-  padding: 0 10px !important;
-}
-
-.mat-checkbox .mat-checkbox-frame {
-  border-width: 1px !important;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgb(215, 215, 215);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(190, 190, 190);
-}
-
-@import './fonts/uxf-icon-font.scss';
-@import './cloudapp.scss';
+@import "./_cloudapp";

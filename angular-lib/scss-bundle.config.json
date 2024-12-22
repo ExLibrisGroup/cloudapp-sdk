@@ -2,6 +2,9 @@
     "bundlerOptions": {
         "rootDir": "./",
         "entryFile": "src/angular/ui/styles/styles.scss",
-        "outFile": "dist/styles/styles.scss"
+        "outFile": "dist/styles/styles.scss",
+        "includePaths": [ 
+            "./node_modules"
+        ] 
     }
 }

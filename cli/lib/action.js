@@ -1,14 +1,14 @@
-const open = require("open");
-const chalk = require("chalk");
-const fs = require("fs-extra");
-const os = require("os");
-const { spawn } = require("child_process");
-const sep = require("path").sep;
+import chalk from "chalk";
+import { spawn } from "child_process";
+import fs from "fs-extra";
+import open from "open";
+import os from "os";
+import { sep } from "path";
 
-const { cwd, build, workNg } = require("./dirs");
-const { getConfig } = require("./config/config");
-const { updateIndexHtmlFile } = require("./files");
-const { copyNg } = require("./work");
+import { getConfig } from "./config/config.js";
+import { build, cwd, workNg } from "./dirs.js";
+import { updateIndexHtmlFile } from "./files.js";
+import { copyNg } from "./work.js";
 
 /**
  * A (sisyphean) attempt to suppress information messages on stderr.
@@ -16,7 +16,7 @@ const { copyNg } = require("./work");
  * @param {string} err - The error message to compare
  */
 const suppressErr = err => {
-    return err.startsWith("Compil") || 
+    return err.startsWith("Compil") ||
         ~err.indexOf("bundle");
 }
 
@@ -30,21 +30,21 @@ const printError = data => {
     }
 }
 
-const startDev = (onStart, openBrowser, args = []) => {
+export const startDev = (onStart, openBrowser, args = []) => {
     let started = false;
-    const cmd = [ "start", "--" ].concat(args);
+    const cmd = ["start", "--"].concat(args);
     const onDataOut = data => {
         const str = data.toString();
         if (!started && str.toString().indexOf("open your browser") > -1) {
             onStart();
-            const {env, port} = getConfig();
+            const { env, port } = getConfig();
             let url = getOpenUrl(env, port);
             console.log(`\r\nServer is listening on port ${port}.`);
             if (openBrowser) {
                 console.log(`Opening browser on ${url}.\r\n`);
-                const browserArg = process.argv.findIndex(a=>a === '--browser');
-                const app = browserArg > -1 ? process.argv[browserArg+1] : process.env.ECA_BROWSER;
-                const opts = app ? {app: app} : null;
+                const browserArg = process.argv.findIndex(a => a === '--browser');
+                const app = browserArg > -1 ? process.argv[browserArg + 1] : process.env.ECA_BROWSER;
+                const opts = app ? { app: app } : null;
                 open(url, opts);
             }
             started = true;
@@ -54,8 +54,8 @@ const startDev = (onStart, openBrowser, args = []) => {
         }
     };
     const onDataErr = data => printError(data);
-    const onExit = () => process.exit();
-    runNpmCmd(cmd, onDataOut, onDataErr, onExit);
+    const onExit = code => process.exit(code);
+    runNpmCmd(cmd, onDataOut, onDataErr, onExit, true);
 }
 
 function getOpenUrl(env, port) {
@@ -67,15 +67,19 @@ function getOpenUrl(env, port) {
     return `${origin}${envUrl.pathname}${envUrl.search}`;
 }
 
-const buildProd = (args, onDone) => {
+export const buildProd = (args, spinner) => {
     const start = Date.now();
     const buildDir = `${cwd}${sep}build`;
     fs.removeSync(buildDir);
-    const cmd = [ "build", "--" ].concat(args);
-    const onDataOut = () => {}
-    const onDataErr = data => printError(data);
+    const cmd = ["build", "--"].concat(args);
+    const onDataOut = () => { }
+    const onDataErr = data => {
+        spinner.stop();
+        printError(data);
+        spinner.start();
+    }
     const onExit = error => {
-        onDone();
+        spinner.stop();
         const files = fs.existsSync(buildDir) && fs.readdirSync(buildDir) || [];
         if (files.length > 0) {
             afterBuildProd();
@@ -83,24 +87,25 @@ const buildProd = (args, onDone) => {
             console.log(chalk.green("./build/" + files.join("\r\n./build/")));
         }
     }
-    runNpmCmd(cmd, onDataOut, onDataErr, onExit);
+    runNpmCmd(cmd, onDataOut, onDataErr, onExit, true);
 }
 
-const test = (args) => {
-    const cmd = [ "test", "--" ].concat(args);
+export const test = (args) => {
+    const cmd = ["test", "--"].concat(args);
     const onDataOut = data => {
         console.log(data.toString())
     }
     const onDataErr = data => console.error(chalk.redBright(data.toString()));
-    const onExit = error => {
+    const onExit = (error, code) => {
         console.log(chalk.green('Done'));
+        process.exit(code);
     }
     runNpmCmd(cmd, onDataOut, onDataErr, onExit);
 }
 
-const generate = args => {
+export const generate = args => {
     const files = [];
-    const cmd = [ "generate", "--" ].concat(args).concat(["--defaults", "--interactive=false"]);
+    const cmd = ["generate", "--"].concat(args).concat(["--defaults", "--interactive=false"]);
     const onDataOut = data => {
         const str = data.toString();
         const matches = str.match(/^(?:CREATE|UPDATE)\s+.*$/gm);
@@ -119,11 +124,11 @@ const generate = args => {
             console.log();
         }
     }
-    runNpmCmd(cmd, onDataOut, onDataErr, onExit);
+    runNpmCmd(cmd, onDataOut, onDataErr, onExit, true);
 }
 
-const extractLabels = args => {
-    const cmd = [ "extract-i18n", "--" ].concat(args);
+export const extractLabels = args => {
+    const cmd = ["extract-i18n", "--"].concat(args);
     const onDataOut = data => {
         const str = data.toString();
         if (str.indexOf('donat') === -1) {
@@ -131,12 +136,16 @@ const extractLabels = args => {
         }
     }
     const onDataErr = data => console.error(chalk.redBright(data.toString()));
-    const onExit = () => {};
+    const onExit = () => { };
     runNpmCmd(cmd, onDataOut, onDataErr, onExit);
 }
 
-const runNpmCmd = (cmd, onDataOut, onDataErr, onExit) => {
-    const p = spawn(getNpmCmd(), [ "run", "--silent" ].concat(cmd), {cwd: workNg, shell: true});
+const runNpmCmd = (cmd, onDataOut, onDataErr, onExit, noColor) => {
+    let opts = { cwd: workNg, shell: true };
+    if (noColor) {
+        opts.env = { ...process.env, FORCE_COLOR: 0, NO_COLOR: 1 };
+    }
+    const p = spawn(getNpmCmd(), ["run", "--silent"].concat(cmd), opts);
     if (p.error) {
         console.trace(error);
         process.exit(1);
@@ -149,7 +158,12 @@ const runNpmCmd = (cmd, onDataOut, onDataErr, onExit) => {
             onDataErr(data);
         }
     });
-    p.on("exit", () => onExit(error));
+    p.on("exit", code => {
+        onExit(error, code);
+        if (code !== 0) {
+            throw new Error("Process terminated with error");
+        }
+    });
     process.on("exit", () => p.exit && p.exit());
 }
 
@@ -161,6 +175,4 @@ const afterBuildProd = () => {
 const getNpmCmd = () => getCmd("npm")
 
 const getCmd = cmd => `${cmd}${os.platform() === "win32" ? ".cmd" : ""}`;
-
-module.exports = { startDev, buildProd, generate, extractLabels, test }
 

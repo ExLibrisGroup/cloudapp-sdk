@@ -6,11 +6,13 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ['./menu-item.component.scss']
 })
 export class MenuItemComponent implements OnInit {
-  @Input() title: string;
+
+  @Input() title!: string;
   @Input() icon = 'uxf-icon uxf-check';
-  @Input() routerLink: string;
+  @Input() routerLink!: string;
 
   ngOnInit() {
     
   }
+
 }

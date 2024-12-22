@@ -1,0 +1,49 @@
+@import "themes/_blue.m3-theme";
+@import "themes/_brown.m3-theme";
+@import "themes/_cerise.m3-theme";
+@import "themes/_charcoal.m3-theme";
+@import "themes/_dark_blue.m3-theme";
+@import "themes/_dark_brown.m3-theme";
+@import "themes/_denim_blue.m3-theme";
+@import "themes/_gold.m3-theme";
+@import "themes/_green.m3-theme";
+@import "themes/_maroon.m3-theme";
+@import "themes/_new_blue.m3-theme";
+@import "themes/_orange.m3-theme";
+@import "themes/_pine_green.m3-theme";
+@import "themes/_purple.m3-theme";
+@import "themes/_red.m3-theme";
+@import "themes/_teal_green.m3-theme";
+@import "themes/_violet.m3-theme";
+
+@mixin cloudapp-color-theme($theme) {
+  @include mat.system-level-colors($theme);
+  @include mat.all-component-colors($theme);
+}
+
+@mixin app-typography() {
+  @include mat.all-component-typographies($app-typography);
+}
+
+$cloudapp-color-map: (
+  "blue": $blue-light-theme,
+  "brown": $brown-light-theme,
+  "cerise": $cerise-light-theme,
+  "charcoal": $charcoal-light-theme,
+  "dark_blue": $dark_blue-light-theme,
+  "dark_brown": $dark_brown-light-theme,
+  "denim_blue": $denim_blue-light-theme,
+  "gold": $gold-light-theme,
+  "green": $green-light-theme,
+  "maroon": $maroon-light-theme,
+  "new_blue": $new_blue-light-theme,
+  "orange": $orange-light-theme,
+  "pine_green": $pine_green-light-theme,
+  "purple": $purple-light-theme,
+  "red": $red-light-theme,
+  "teal_green": $teal_green-light-theme,
+  "violet": $violet-light-theme,
+);
+
+$default-light-theme: $blue-light-theme;
+

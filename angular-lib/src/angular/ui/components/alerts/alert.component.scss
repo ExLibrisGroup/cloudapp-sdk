@@ -1,37 +1,44 @@
 cloudapp-alert {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  bottom: 35px;
+  right: 0;
+  left: 0;
+
   .alert-success {
     color: #285b2a;
     background-color: #dbefdc;
     border-color: #cde9ce;
   }
-  
+
   .alert-danger {
     color: #7f231c;
     background-color: #fdd9d7;
     border-color: #fccac7;
   }
-  
+
   .alert-info {
     color: #02587f;
     background-color: #cdeefd;
     border-color: #b8e7fc;
   }
-  
+
   .alert-warning {
     color: #852d12;
     background-color: #ffddd3;
     border-color: #ffd0c1;
   }
-  
+
   .alert {
     position: relative;
     padding: .75rem 1.25rem;
-    margin-bottom: 0.5rem;
     border: 1px solid transparent;
+    border-radius: 4px;
     overflow-wrap: break-word;
-    /*border-radius: .25rem;*/
+    margin: 15px 10px;
   }
-  
+
   .close {
     float: right;
     font-size: 1.5rem;
@@ -39,18 +46,18 @@ cloudapp-alert {
     line-height: 1;
     color: #000;
     text-shadow: 0 1px 0 #fff;
-    opacity: .5;
+    opacity: 0.5;
     margin-left: 10px;
   }
-  
+
   a.close {
     cursor: pointer;
   }
-  
+
   .fade {
-    transition: opacity .15s linear;
+    transition: opacity 0.15s linear;
   }
-  
+
   .fade:not(.show) {
     opacity: 0;
   }

@@ -16,8 +16,8 @@ export class AlertComponent implements OnInit, OnDestroy {
   @Input() fade = true;
 
   alerts: Alert[] = [];
-  alertSubscription: Subscription;
-  routeSubscription: Subscription;
+  alertSubscription!: Subscription;
+  routeSubscription!: Subscription;
 
   constructor(private router: Router, private alertService: AlertService) { }
 
@@ -43,8 +43,6 @@ export class AlertComponent implements OnInit, OnDestroy {
           setTimeout(() => this.removeAlert(alert), alert.delay);
         }
 
-        // Scroll to top
-        window.scrollTo(0, 0);
       });
 
     // clear alerts on location change
@@ -63,19 +61,21 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   removeAlert(alert: Alert) {
     // check if already removed to prevent error on auto close
-    if (!this.alerts.includes(alert)) return;
+    const _alert = this.alerts.find(x => x === alert);
+
+    if (!_alert) return;
 
     if (this.fade) {
       // fade out alert
-      this.alerts.find(x => x === alert).fade = true;
+      _alert.fade = true;
 
       // remove alert after faded out
       setTimeout(() => {
-        this.alerts = this.alerts.filter(x => x !== alert);
+        this.alerts = this.alerts.filter(x => x !== _alert);
       }, 250);
     } else {
       // remove alert
-      this.alerts = this.alerts.filter(x => x !== alert);
+      this.alerts = this.alerts.filter(x => x !== _alert);
     }
   }
 
@@ -99,4 +99,5 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     return classes.join(' ');
   }
+  
 }

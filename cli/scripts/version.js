@@ -1,3 +1,7 @@
-const { version } = require('../package.json');
+import fs from "fs-extra";
+import path from "path";
 
-console.log(`v${version}`)
+const __filename = import.meta.url;
+const __dirname = path.dirname(__filename).replace("file:///", "");
+
+console.log(`v${JSON.parse(fs.readFileSync(path.resolve(__dirname, "../package.json"))).version}`);

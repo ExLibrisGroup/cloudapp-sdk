@@ -1,8 +1,0 @@
-@import '../scss/locals';
-
-$app-typography: mat-typography-config(
-    $font-family: inherit,
-    $headline: mat-typography-level(map-get($fontSizes, large), map-get($lineHeights, large), map-get($fontWeights, regular)),
-    $body-1: mat-typography-level(map-get($fontSizes, regular), map-get($lineHeights, regular), map-get($fontWeights, regular)),
-    $body-2: mat-typography-level(map-get($fontSizes, regular), map-get($lineHeights, regular), map-get($fontWeights, bold))
-);

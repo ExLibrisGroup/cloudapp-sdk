@@ -1,18 +1,21 @@
-const ora = require("ora");
-const chalk = require("chalk");
+import chalk from "chalk";
+import ora from "ora";
 
-const { buildProd } = require("../lib/action");
-const { syncNgDir } = require("../lib/work");
+import { buildProd } from "../lib/action.js";
+import { applyNodeOptions } from "../lib/fns.js";
+import { syncNgDir } from "../lib/work.js";
 
 process.env.NODE_ENV = "production";
 
 const args = process.argv.slice(3);
 let spinner;
 
+applyNodeOptions();
+
 syncNgDir()
-  .then(async () => {
+  .then(() => {
     spinner = ora().start("Building...");
-    buildProd(args, () => spinner.stop());
+    buildProd(args, spinner);
   })
   .catch(error => {
     spinner && spinner.stop();
