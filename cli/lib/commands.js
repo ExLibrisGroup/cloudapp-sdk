@@ -1,16 +1,17 @@
-const commands = {
-    init: "Initialize current directory",
-    start: "Install dependencies, configure and start development server",
-    generate: "Generate code in an initialized project",
-    "extract-labels": "Extract labels into json files for translation",
+export const commands = {
     build: "Build production-ready assets for app",
+    init: "Initialize current directory",
+    eject: "Eject a file or folder from the template scaffolding to the CloudApp working directory",
+    "extract-labels": "Extract labels into json files for translation",
+    generate: "Generate code in an initialized project",
     help: "Display this list of available commands",
-    version: "Display the installed version of the CLI",
+    start: "Install dependencies, configure and start development server",
     test: "Build and start the test server",
     update: "Update to the latest SDK version and install updated packages",
+    version: "Display the installed version of the CLI"
 }
 
-const subcommands = {
+export const subcommands = {
     generate: {
         class: "Creates a new generic class definition",
         directive: "Creates a new generic directive definition",
@@ -20,7 +21,7 @@ const subcommands = {
     }
 }
 
-const flags = {
+export const flags = {
     start: {
         "--no-install": "Do not install dependencies",
         "--no-open-browser": "Do not open browser after starting",
@@ -28,16 +29,14 @@ const flags = {
     }
 }
 
-function getCommands() {
+export function getCommands() {
     return commands;
 }
 
-function getSubCommands(command) {
+export function getSubCommands(command) {
     return subcommands[command] || {};
 }
 
-function getFlags(command) {
+export function getFlags(command) {
     return flags[command] || {};
 }
-
-module.exports = { getCommands, getSubCommands, getFlags };

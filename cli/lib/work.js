@@ -1,19 +1,21 @@
-const path = require("path");
-const sep = path.sep;
-const chalk = require("chalk");
+import chalk from "chalk";
+import fs from "fs-extra";
+import _ncp from "ncp";
+import { sep } from "path";
+import util from "util";
 
-const util = require("util");
-const fs = require("fs-extra");
-const ncp = util.promisify(require("ncp").ncp);
+import { angularJson, updateNgConfigPaths, updateTsConf } from "./config/config.js";
+import { copyManifest } from "./config/manifest.js";
+import { baseNg, work, workNg } from "./dirs.js";
+import { indexHtml, updateIndexHtmlFile } from "./files.js";
 
-const { work, workNg, baseNg } = require("./dirs");
-const { indexHtml, updateIndexHtmlFile } = require("./files");
-const { copyManifest } = require("./config/manifest.js");
+const ncp = util.promisify(_ncp);
 
 const log = msg => console.log(chalk.gray(`\r\n${msg}\r\n`));
 
 const fileHandlers = {
-    [[indexHtml]]: () => updateIndexHtmlFile(indexHtml)
+    [[indexHtml]]: () => updateIndexHtmlFile(indexHtml),
+    [[angularJson]]: () => updateNgConfigPaths()
 }
 
 const getWorkPaths = path => {
@@ -32,39 +34,41 @@ const copyItem = (src, dest, isDirectory = false) => {
     return isDirectory ? ncp(src, dest) : fs.copySync(src, dest);
 }
 
-const copyNg = (path, isDirectory = false) => {
-    const {src: dest, dest: src} = getWorkPaths(path);
+export const copyNg = (path, isDirectory = false) => {
+    const { src: dest, dest: src } = getWorkPaths(path);
     ensureSync(path, isDirectory);
     copyItem(src, dest, isDirectory);
 }
 
 const copyWork = (path, isDirectory = false) => {
-    const {src, dest} = getWorkPaths(path);
+    const { src, dest } = getWorkPaths(path);
     ensureSync(path, isDirectory);
     log(`Copying '${src}' -> '${dest}'`);
     copyItem(src, dest, isDirectory);
-    (fileHandlers[dest] || (() => {}))();
+    (fileHandlers[dest] || (() => { }))();
 }
 
 const deleteWork = (path, isDirectory = false) => {
-    const {dest, restore: src} = getWorkPaths(path);
+    const { dest, restore: src } = getWorkPaths(path);
     if (fs.pathExistsSync(src)) {
         log(`Restore original: Copy '${src}' -> '${dest}'`);
         copyItem(src, dest, isDirectory);
-        (fileHandlers[dest] || (() => {}))();
+        (fileHandlers[dest] || (() => { }))();
     } else if (fs.pathExists(dest)) {
         log(`Removing '${dest}'`);
         fs.removeSync(dest);
     }
 }
 
-const syncNgDir = () => {
+export const syncNgDir = () => {
     fs.emptyDirSync(workNg);
     fs.ensureDirSync(workNg);
-    const updateAfterSync = function() {
+    const updateAfterSync = function () {
         return new Promise(resolve => {
             setTimeout(() => {
                 copyManifest();
+                updateTsConf();
+                updateNgConfigPaths();
                 updateIndexHtmlFile(indexHtml);
                 resolve();
             }, 2000);
@@ -73,9 +77,7 @@ const syncNgDir = () => {
     return ncp(baseNg, workNg).then(() => ncp(work, workNg)).then(() => updateAfterSync());
 }
 
-const copyWorkFile = path => copyWork(path);
-const copyWorkDir = path => copyWork(path, true);
-const deleteWorkFile = path => deleteWork(path);
-const deleteWorkDir = path => deleteWork(path, true);
-
-module.exports = { copyWorkFile, copyWorkDir, deleteWorkFile, deleteWorkDir, syncNgDir, copyNg }
+export const copyWorkFile = path => copyWork(path);
+export const copyWorkDir = path => copyWork(path, true);
+export const deleteWorkFile = path => deleteWork(path);
+export const deleteWorkDir = path => deleteWork(path, true);

@@ -4,10 +4,10 @@ import { concatMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { CloudAppRest } from '../../lib/rest';
-import { RestResponse, RestErrorResponse } from '../../lib/public-interfaces';
+import { RestErrorResponse } from '../../lib/public-interfaces';
 import { RestServiceLogger as logger } from './service-loggers';
 
-export import Request = CloudAppRest.Request;
+export type Request = CloudAppRest.Request;
 export import HttpMethod = CloudAppRest.HttpMethod;
 
 @Injectable({
@@ -25,7 +25,7 @@ export class CloudAppRestService {
       concatMap(response => {
         if (response.error) {
           logger.log('Response NOT OK', response);
-          return throwError(new RestError().fromHttpError(response.error));
+          return throwError(() => new RestError().fromHttpError(response.error));
         }
         logger.log('Response OK', response);
         return of(response.body as T);
@@ -36,10 +36,11 @@ export class CloudAppRestService {
 }
 
 class RestError implements RestErrorResponse {
-  ok: boolean;
+
+  ok = false;
   status: any;
-  statusText: string;
-  message: string;
+  statusText = '';
+  message = '';
   error: any;
 
   fromHttpError(e: HttpErrorResponse) {
@@ -56,4 +57,5 @@ class RestError implements RestErrorResponse {
     }
     return this;
   }
+
 }

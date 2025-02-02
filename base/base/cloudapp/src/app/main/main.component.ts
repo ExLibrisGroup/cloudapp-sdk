@@ -1,9 +1,16 @@
-import { Observable  } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CloudAppRestService, CloudAppEventsService, Request, HttpMethod, 
-  Entity, RestErrorResponse, AlertService } from '@exlibris/exl-cloudapp-angular-lib';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
+import {
+  AlertService,
+  CloudAppEventsService,
+  CloudAppRestService,
+  Entity,
+  HttpMethod,
+  Request,
+  RestErrorResponse
+} from '@exlibris/exl-cloudapp-angular-lib';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -13,17 +20,18 @@ import { MatRadioChange } from '@angular/material/radio';
 export class MainComponent implements OnInit, OnDestroy {
 
   loading = false;
-  selectedEntity: Entity;
+  selectedEntity: Entity | null = null;
   apiResult: any;
 
-  entities$: Observable<Entity[]> = this.eventsService.entities$
-  .pipe(tap(() => this.clear()))
+  entities$: Observable<Entity[]>;
 
   constructor(
     private restService: CloudAppRestService,
     private eventsService: CloudAppEventsService,
-    private alert: AlertService 
-  ) { }
+    private alert: AlertService
+  ) {
+    this.entities$ = this.eventsService.entities$.pipe(tap(() => this.clear()));
+  }
 
   ngOnInit() {
   }
@@ -35,11 +43,11 @@ export class MainComponent implements OnInit, OnDestroy {
     const value = event.value as Entity;
     this.loading = true;
     this.restService.call<any>(value.link)
-    .pipe(finalize(()=>this.loading=false))
-    .subscribe(
-      result => this.apiResult = result,
-      error => this.alert.error('Failed to retrieve entity: ' + error.message)
-    );
+      .pipe(finalize(() => this.loading = false))
+      .subscribe({
+        next: result => this.apiResult = result,
+        error: error => this.alert.error('Failed to retrieve entity: ' + error.message)
+      });
   }
 
   clear() {
@@ -53,24 +61,24 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this.loading = true;
     let request: Request = {
-      url: this.selectedEntity.link, 
+      url: this.selectedEntity!.link,
       method: HttpMethod.PUT,
       requestBody
     };
     this.restService.call(request)
-    .pipe(finalize(()=>this.loading=false))
-    .subscribe({
-      next: result => {
-        this.apiResult = result;
-        this.eventsService.refreshPage().subscribe(
-          ()=>this.alert.success('Success!')
-        );
-      },
-      error: (e: RestErrorResponse) => {
-        this.alert.error('Failed to update data: ' + e.message);
-        console.error(e);
-      }
-    });    
+      .pipe(finalize(() => this.loading = false))
+      .subscribe({
+        next: result => {
+          this.apiResult = result;
+          this.eventsService.refreshPage().subscribe(
+            () => this.alert.success('Success!')
+          );
+        },
+        error: (e: RestErrorResponse) => {
+          this.alert.error('Failed to update data: ' + e.message);
+          console.error(e);
+        }
+      });
   }
 
   private tryParseJson(value: any) {

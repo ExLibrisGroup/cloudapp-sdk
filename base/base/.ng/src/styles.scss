@@ -1,4 +1,6 @@
-@import '~@exlibris/exl-cloudapp-angular-lib/styles/styles';
+@use '@angular/material' as mat;
+
+@import '@exlibris/exl-cloudapp-angular-lib/styles/styles';
 @import './main.scss';
 
 @each $color,

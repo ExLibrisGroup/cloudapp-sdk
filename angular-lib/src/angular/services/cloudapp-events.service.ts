@@ -4,7 +4,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, Subscription, BehaviorSubject, Observable, defer, throwError, of } from 'rxjs';
 
 import { MessageEventHandler } from '../../lib/messages/interfaces';
-import { PageInfo, InitData, RefreshPageResponse, Entity } from '../../lib/public-interfaces';
+import { PageInfo, InitData, RefreshPageResponse, Entity, UrlTypes } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
 import { CloudAppIncomingEvents } from '../../lib/events/incoming-events';
 import { EventServiceLogger as logger } from './service-loggers';
@@ -14,12 +14,12 @@ import { EventServiceLogger as logger } from './service-loggers';
 })
 export class CloudAppEventsService implements OnDestroy {
 
-  private _unsubscribeSubject$: Subject<void>;
+  private _unsubscribeSubject$!: Subject<void>;
 
-  private pageInfo: any;
-  private _onPageLoadHandler: MessageEventHandler<any>;
-  private _onPageLoadSubject$: BehaviorSubject<any>;
-  private _entities$: Observable<Entity[]>;
+  private _onPageLoadHandler!: MessageEventHandler<any>;
+  private _onPageLoadSubject$!: BehaviorSubject<any>;
+  private _entities$!: Observable<Entity[]>;
+  
   get entities$() { return this._entities$ };
 
   constructor() {
@@ -31,9 +31,9 @@ export class CloudAppEventsService implements OnDestroy {
     return this._getObservable(CloudAppOutgoingEvents.getInitData).pipe(
       /* Dev environment returns https://localhost for URLs */
       map((data: InitData)=>{
-        Object.entries(data.urls).forEach(([key, value]) => {
+        Object.entries(data.urls).forEach(([key, value]: [string, string]) => {
           if (value.startsWith('https://localhost')) {
-            data.urls[key] = data.urls[key].replace('https', 'http');
+            data.urls[key as UrlTypes] = data.urls[key as UrlTypes].replace('https', 'http');
           }
         })
         return data;
@@ -80,24 +80,24 @@ export class CloudAppEventsService implements OnDestroy {
   }
 
   private _initListener(name: string, register: (x: any) => any, defaultValue?: any, prop?: string, initValue?: Observable<any>): void {
-    this[`_on${name}Subject$`] = new BehaviorSubject(defaultValue);
-    this[`_on${name}Handler$`] = (sender: any, data: any, ev: any) => this.handleEvent(name, data, prop);
+    (this as any)[`_on${name}Subject$`] = new BehaviorSubject(defaultValue);
+    (this as any)[`_on${name}Handler$`] = (sender: any, data: any, ev: any) => this.handleEvent(name, data, prop);
     if (initValue) {
-      initValue.subscribe(val => this[`_on${name}Handler$`](null, val, null));
+      initValue.subscribe(val => (this as any)[`_on${name}Handler$`](null, val, null));
     }
 																										 
-    register(this[`_on${name}Handler$`]);
+    register((this as any)[`_on${name}Handler$`]);
     logger.log(`Registered handler '_on${name}Handler$'`);
   }
 
   private handleEvent(name: string, data: any, prop?: string) {
-    if (!prop || !isEqual(this[prop], data)) {
+    if (!prop || !isEqual((this as any)[prop], data)) {
       if (prop) {
-        this[prop] = data;
+        (this as any)[prop] = data;
         logger.log(`[${name}] Updated prop '${prop}' with data:`, data);
       }
       logger.log(`[${name}] Broadcasting to subscribers`);
-      this[`_on${name}Subject$`].next(data);
+      (this as any)[`_on${name}Subject$`].next(data);
     } else {
       logger.log(`[${name}] Event received, but no data change detected`);
     }
@@ -106,10 +106,10 @@ export class CloudAppEventsService implements OnDestroy {
   private _getObservable(f: () => Promise<any>, prop?: string): Observable<any> {
     return defer(() => f()).pipe(concatMap(data => {
       if (data && data.error) {
-        return throwError(data);
+        return throwError(() => new Error(data));
       }
       if (prop) {
-        this[prop] = data;
+        (this as any)[prop] = data;
         logger.log(`Updated prop '${prop}' with data: `, data);
       }
       return of(data);

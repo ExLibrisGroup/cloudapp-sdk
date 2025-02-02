@@ -1,7 +1,7 @@
 import { defer, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { WriteConfigResponse } from '../../lib/public-interfaces';
 import { CloudAppOutgoingEvents } from '../../lib/events/outgoing-events';
@@ -21,7 +21,7 @@ export class CloudAppConfigService {
     ));
   }
 
-  getAsFormGroup = (): Observable<FormGroup> => this.get().pipe(map(config => toFormGroup(config)));
+  getAsFormGroup = (): Observable<UntypedFormGroup> => this.get().pipe(map(config => toFormGroup(config)));
 
   set(value: any): Observable<WriteConfigResponse> {
     return withErrorChecking(defer(() => CloudAppOutgoingEvents.config(JSON.stringify(value || {}))));

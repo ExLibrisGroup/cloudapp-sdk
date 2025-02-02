@@ -12,7 +12,7 @@ const THEME_CLASS_PREFIX = 'cloudapp-theme--';
 })
 export class InitService {
 
-    private _data: InitData;
+    private _data!: InitData;
 
     constructor(private translate: TranslateService, private eventsService: CloudAppEventsService) {
         this.init();
@@ -34,8 +34,10 @@ export class InitService {
     }
 
     private setLanguage(lang: any) {
-        if (!lang) { return this.translate.use(DEFAULT_LANG); }
-        this.translate.use(lang);
+        if (!lang) { 
+            return this.translate.use(DEFAULT_LANG); 
+        }
+        return this.translate.use(lang);
     }
 
     private setThemeClass(color: string) {

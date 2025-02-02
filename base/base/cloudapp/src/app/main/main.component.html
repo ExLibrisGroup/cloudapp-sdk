@@ -1,7 +1,5 @@
 <div *ngIf="entities$ | async as entities">
-  <ng-container 
-    *ngIf="entities.length > 0; then entitylist; else noentities"
-  ></ng-container>
+  <ng-container *ngIf="entities.length > 0; then entitylist; else noentities"></ng-container>
   <ng-template #noentities>
     <h1>Welcome!</h1>
     <p>Use this sample app to get you started. The app includes the following:</p>
@@ -38,13 +36,10 @@
       <mat-card-content>
         <pre>{{selectedEntity | json}}</pre>
       </mat-card-content>
-    </mat-card>  
+    </mat-card>
     <label id="entities-radio-group-label">Select an entity:</label>
-    <mat-radio-group
-      aria-labelledby="entities-radio-group-label"
-      class="entities-radio-group"
-      [(ngModel)]="selectedEntity"
-      (change)="entitySelected($event)">
+    <mat-radio-group aria-labelledby="entities-radio-group-label" class="entities-radio-group"
+      [(ngModel)]="selectedEntity" (change)="entitySelected($event)">
       <mat-radio-button *ngFor="let entity of entities" [value]="entity">
         {{entity.description}}
       </mat-radio-button>

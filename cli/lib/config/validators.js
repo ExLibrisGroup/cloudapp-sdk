@@ -1,13 +1,13 @@
-const MAX_PORT = Math.pow(2, 16) - 1;
+export const MAX_PORT = Math.pow(2, 16) - 1;
 
-const notEmpty = value => {
+export const notEmpty = value => {
     if ((value||"").trim().length === 0) {
         return "Value must not be empty";
     }
     return true;
 }
 
-const minLength = min => {
+export const minLength = min => {
     return value => {
         if ((value||"").length < min) {
             return `Value must be at least ${min} characters long`;
@@ -16,14 +16,14 @@ const minLength = min => {
     }
 }
 
-const validateURL = value => {
+export const validateURL = value => {
     if (!/https?:\/\/.{3,}/.test(value)) {
         return `Value must be a valid URL`;
     }
     return true;
 }
 
-const validatePort = value => {
+export const validatePort = value => {
     if (isNaN(value)) {
         return "Value must be a number";
     }
@@ -32,5 +32,3 @@ const validatePort = value => {
     }
     return true;
 }
-
-module.exports = { MAX_PORT, notEmpty, minLength, validateURL, validatePort };

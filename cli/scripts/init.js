@@ -1,14 +1,15 @@
-const ora = require("ora");
-const util = require("util");
-const fs = require("fs-extra");
-const ncp = util.promisify(require("ncp").ncp);
-const prompts = require("prompts");
-const chalk = require("chalk");
+import chalk from "chalk";
+import fs from "fs-extra";
+import _ncp from "ncp";
+import ora from "ora";
+import prompts from "prompts";
+import util from "util";
 
-const { checkConfig } = require("../lib/config/config");
-const { updateManifest } = require("../lib/config/manifest");
-const {cwd, globalBaseDir, workNg, work} = require("../lib/dirs");
-const { syncNgDir } = require("../lib/work");
+import { checkConfig } from "../lib/config/config.js";
+import { updateManifest } from "../lib/config/manifest.js";
+import { cwd, globalBaseDir, work, workNg } from "../lib/dirs.js";
+
+const ncp = util.promisify(_ncp);
 
 const copyBaseDir = () => {
     return ncp(globalBaseDir, cwd)
@@ -19,11 +20,11 @@ const copyBaseDir = () => {
 
 const initNg = () => {
     return fs.ensureDir(workNg)
-        .then(() => fs.copy(`${globalBaseDir}/.ng/angular.json`, `${workNg}/angular.json`)) 
+        .then(() => fs.copy(`${globalBaseDir}/.ng/angular.json`, `${workNg}/angular.json`))
 }
 
 const confirmEmptyDir = async () => {
-    if ((fs.readdirSync(cwd)||[]).length === 0) return Promise.resolve();
+    if ((fs.readdirSync(cwd) || []).length === 0) return Promise.resolve();
     console.log(`\r\nWorking directory is not empty. [${cwd}]`)
     const response = await prompts({
         type: "confirm",
@@ -46,7 +47,7 @@ const confirmExistingApp = async () => {
         message: "Do you want to reconfigure this existing app?",
         initial: false
     });
-    if (response.value) return Promise.resolve({title: 'default', subtitle: 'default', author: 'default'});
+    if (response.value) return Promise.resolve({ title: 'default', subtitle: 'default', author: 'default' });
     return Promise.reject(new Error("Existing app detected."));
 }
 

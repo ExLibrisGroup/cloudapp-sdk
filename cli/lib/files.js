@@ -1,20 +1,22 @@
-const fs = require("fs-extra");
-const path = require("path");
+import * as cheerio from "cheerio";
+import fs from "fs-extra";
+import { encode } from "html-entities";
+import JsBeautify from "js-beautify";
+import _ from "lodash";
+import path from "path";
 
-const cheerio = require("cheerio");
-const entities = new (require("html-entities").XmlEntities)();
-const htmlBeautify = require('js-beautify').html;
+import { workNg } from "./dirs.js";
 
-const { workNg } = require("./dirs");
-const { kebabCase } = require("lodash");
+const { kebabCase } = _;
+const { html: htmlBeautify } = JsBeautify;
 
-const indexHtml = [workNg, "src", "index.html"].join(path.sep);
+export const indexHtml = [workNg, "src", "index.html"].join(path.sep);
 
 const getManifest = () => {
-    return JSON.parse(fs.readFileSync("manifest.json", "utf8"));;
+    return JSON.parse(fs.readFileSync("manifest.json", "utf8"));
 }
 
-const updateIndexHtmlFile = file => {
+export const updateIndexHtmlFile = file => {
     const html = fs.readFileSync(file, "utf8");
     fs.writeFileSync(file, updateIndexHtml(html, getManifest()));
 }
@@ -31,7 +33,7 @@ const updateIndexHtml = (html, manifest) => {
 }
 
 const getCsp = (contentSecurity) => {
-    const csp = { 
+    const csp = {
         "default-src": "'none'",
         "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
         "script-src": "'self'",
@@ -47,9 +49,9 @@ const getCsp = (contentSecurity) => {
         Object.entries(contentSecurity).forEach(([key, val]) => {
             key = kebabCase(key);
             if (key in csp && Array.isArray(val)) {
-                const whitelist = entities.encodeNonUTF(val.join(" "));    
+                const whitelist = encode(val.join(" "), { mode: "nonAsciiPrintable", level: "xml" });
                 csp[key] = `${csp[key]} ${whitelist}`;
-            } 
+            }
         })
     }
     let arr = [];
@@ -58,5 +60,3 @@ const getCsp = (contentSecurity) => {
     }
     return arr.join("; ");
 }
-
-module.exports = { indexHtml, updateIndexHtmlFile }

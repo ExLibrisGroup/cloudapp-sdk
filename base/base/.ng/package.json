@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ../node_modules/@angular/cli/bin/ng serve",
-    "build": "node ../node_modules/@angular/cli/bin/ng build --prod",
+    "build": "node ../node_modules/@angular/cli/bin/ng build --configuration=production",
     "generate": "node ../node_modules/@angular/cli/bin/ng generate",
     "test": "node ../node_modules/@angular/cli/bin/ng test",
-    "extract-i18n": "node ../node_modules/@biesbjerg/ngx-translate-extract/bin/cli.js"
+    "extract-i18n": "node ../node_modules/@vendure/ngx-translate-extract/bin/cli.js"
   },
   "private": true
 }

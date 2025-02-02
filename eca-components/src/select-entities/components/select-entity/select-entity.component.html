@@ -1,0 +1,16 @@
+<mat-radio-group *ngIf="entities && entities.length > 0; else noEntities" aria-labelledby="select-entity-label"
+  class="entity-radio-group" (change)="entitySelected()" [(ngModel)]="selected">
+  <mat-radio-button class="entity-radio-button" *ngFor="let entity of entities; index as i" [value]="entity">
+    <span *ngIf="lineNumbers">
+      {{i+1}}.
+    </span>
+    <span [attr.title]="truncate ? entity.description : null" [ngClass]="{'truncate': truncate}">
+      {{entity.description}}
+    </span>
+  </mat-radio-button>
+</mat-radio-group>
+<ng-template #noEntities>
+  <div id="emptyList">
+    <span class="uxf-icon uxf-list" style="font-size: 3em;"></span>
+  </div>
+</ng-template>

@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 
-import { EventHandlingBase } from 'strongly-typed-events';
+import { EventHandlingBase, IEventHandler } from 'strongly-typed-events';
 
 import { MessagePayload, CustomEventTarget, Message, MessageEventHandler as _MessageEventHandler, CustomMessageEvent } from './interfaces';
 import { logOutgoing, logIncoming, debug, logTimeout } from './message-logger';
@@ -30,12 +30,12 @@ export namespace CloudAppMessages {
 
     export class MessageBus extends EventHandlingBase<MessageBus, MessagePayload> {
 
-        private _started: boolean;
+        private _started = false;
         private _timeout: number;
         private _names: Record<string, boolean> = {};
 
-        private _attachEventFn: Function;
-        private _detachEventFn: Function;
+        private _attachEventFn!: Function;
+        private _detachEventFn!: Function | undefined;
 
         private _listenTarget: CustomEventTarget;
         private _postTarget: CustomEventTarget;
@@ -69,17 +69,17 @@ export namespace CloudAppMessages {
 
         public stop(): void {
             if (this._started) {
-                this._detachEventFn.call(this._listenTarget, MESSAGE, this._handleMessage);
+                this._detachEventFn?.call(this._listenTarget, MESSAGE, this._handleMessage);
                 this._clearAll();
             }
         }
 
-        public subscribe(name, fn): void {
+        public override subscribe(name: string, fn: IEventHandler<MessageBus, MessagePayload>): void {
             super.subscribe(name, fn);
             debug(`New subscription to ${name}`);
         }
         
-        public unsubscribe(name, fn): void {
+        public override unsubscribe(name: string, fn: IEventHandler<MessageBus, MessagePayload>): void {
             super.unsubscribe(name, fn);
             debug(`Unsubscribed from ${name}`);
         }

@@ -1,7 +1,7 @@
-const chalk = require("chalk");
+import chalk from "chalk";
 
-const { generate } = require("../lib/action");
-const { syncNgDir } = require("../lib/work");
+import { generate } from "../lib/action.js";
+import { syncNgDir } from "../lib/work.js";
 
 const args = process.argv.slice(3);
 if (args.length < 2 || args[1].startsWith("-")) {

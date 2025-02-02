@@ -1,0 +1,22 @@
+.entity-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.entity-radio-button {
+  margin: 5px;
+}
+
+#emptyList {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  display: block;
+}

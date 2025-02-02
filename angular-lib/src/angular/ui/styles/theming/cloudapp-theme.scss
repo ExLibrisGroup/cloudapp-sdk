@@ -1,7 +1,0 @@
-@import 'cloudapp-palette';
-
-$app-primary: mat-palette($cloudapp-blue, 500);
-$app-accent: mat-palette($cloudapp-blue, 300);
-$app-warn: mat-palette($mat-red);
-
-$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);

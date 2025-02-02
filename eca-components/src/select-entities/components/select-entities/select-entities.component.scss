@@ -1,0 +1,12 @@
+#emptyList {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  display: block;
+}

@@ -1,4 +1,5 @@
 import { MaterialModule } from './modules/material.module';
-import { CloudAppTranslateModule, LazyTranslateLoader } from './modules/translate.module';
+import { CloudAppTranslateModule, HttpTranslateLoader } from './modules/translate.module';
 
-export { MaterialModule, CloudAppTranslateModule, LazyTranslateLoader };
+export { MaterialModule, CloudAppTranslateModule, HttpTranslateLoader };
+

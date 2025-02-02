@@ -1,5 +1,4 @@
-const { execSync } = require("child_process");
+import { execSync } from "child_process";
 
-const install = () => execSync("npm install --loglevel=error", {stdio: "inherit"});
-
-module.exports = { install }
+export const install = () => execSync("npm install --loglevel=error", { stdio: "inherit" });
+export const installLPD = () => execSync("npm install --legacy-peer-deps --loglevel=error", { stdio: "inherit" });

@@ -1,7 +1,8 @@
-const { getFlags } = require("../lib/commands");
-const chalk = require("chalk");
+import chalk from "chalk";
 
-function printHelp(commands) {
+import { getFlags } from "../lib/commands.js";
+
+export function printHelp(commands) {
     console.log(`\r\n${chalk.underline("Available Commands")}\r\n`);
     let length = 0;
     Object.keys(commands).forEach(cmd => length = Math.max(length, cmd.length));
@@ -10,10 +11,8 @@ function printHelp(commands) {
         console.log(" ", chalk.bold(command), spaces, commands[command]);
         const flags = getFlags(command);
         for (let flag in flags) {
-            console.log(Array(length+8).fill(" ").join(""), "  ", flag, ":", flags[flag]);
+            console.log(Array(length + 8).fill(" ").join(""), "  ", flag, ":", flags[flag]);
         }
     }
     console.log();
 }
-
-module.exports = { printHelp }
