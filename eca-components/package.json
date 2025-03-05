@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/eca-components",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Components to be used in Ex Libris Cloud Apps",
   "license": "BSD-3-Clause",
   "keywords": [],
@@ -24,7 +24,7 @@
     "@angular/core": "18.2.13",
     "@angular/forms": "18.2.13",
     "@angular/material": "18.2.14",
-    "@exlibris/exl-cloudapp-angular-lib": "^2.0.0",
+    "@exlibris/exl-cloudapp-angular-lib": "^2.0.1",
     "@ngx-translate/core": "16.0.3",
     "@types/lodash": "4.17.13",
     "lodash": "4.17.21",
@@ -34,6 +34,6 @@
     "typescript": "5.5.4"
   },
   "peerDependencies": {
-    "@exlibris/exl-cloudapp-angular-lib": "^2.0.0"
+    "@exlibris/exl-cloudapp-angular-lib": "^2.0.1"
   }
 }
