@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-angular-lib",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "description": "Library used in Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
