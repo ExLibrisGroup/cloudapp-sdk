@@ -57,10 +57,10 @@ syncNgDir()
     }
 
     const packageJson = JSON.parse(fs.readFileSync(`${cwd}${path.sep}package.json`));
-    clearDeps(packageJson.dependencies, devDependencies);
-    clearDeps(packageJson.devDependencies, dependencies);
-    packageJson.devDependencies = Object.fromEntries(Object.entries(Object.assign({}, packageJson.devDependencies, devDependencies)).sort());
-    packageJson.dependencies = Object.fromEntries(Object.entries(Object.assign({}, packageJson.dependencies, dependencies)).sort());
+    clearDeps(packageJson.dependencies || {}, devDependencies);
+    clearDeps(packageJson.devDependencies || {}, dependencies);
+    packageJson.devDependencies = Object.fromEntries(Object.entries(Object.assign({}, packageJson.devDependencies || {}, devDependencies)).sort());
+    packageJson.dependencies = Object.fromEntries(Object.entries(Object.assign({}, packageJson.dependencies || {}, dependencies)).sort());
     const updated = JSON.stringify(packageJson, null, 2);
 
     console.log();

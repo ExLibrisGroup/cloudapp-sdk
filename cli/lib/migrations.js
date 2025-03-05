@@ -237,8 +237,8 @@ const migrateV2_0 = async () => {
             "jasmine-spec-reporter",
             "karma-coverage-istanbul-reporter"
         ].forEach(p => {
-            delete packageJson.dependencies[p];
-            delete packageJson.devDependencies[p];
+            delete (packageJson.dependencies || {})[p];
+            delete (packageJson.devDependencies || {})[p];
         });
         fs.writeFileSync(`${cwd}/package.json`, JSON.stringify(packageJson, null, 2));
     }
