@@ -111,49 +111,74 @@
 }
 
 @mixin _mdc-overrides() {
-    --mat-form-field-filled-label-display: block;
-    --mat-form-field-filled-with-label-container-padding-top: 16px;
-    --mat-form-field-filled-with-label-container-padding-bottom: 0px;
-
     $mdc-button-container-shape: 4px;
     $mdc-button-container-height: 36px;
     $mdc-button-horizontal-padding: 16px;
 
-    --mdc-filled-button-container-shape: #{$mdc-button-container-shape};
-    --mdc-filled-button-container-height: #{$mdc-button-container-height};
-    --mat-filled-button-horizontal-padding: #{$mdc-button-horizontal-padding};
-    --mdc-outlined-button-container-shape: #{$mdc-button-container-shape};
-    --mdc-outlined-button-container-height: #{$mdc-button-container-height};
-    --mat-outlined-button-horizontal-padding: #{$mdc-button-horizontal-padding};
-    --mdc-protected-button-container-shape: #{$mdc-button-container-shape};
-    --mdc-protected-button-container-height: #{$mdc-button-container-height};
-    --mat-protected-button-horizontal-padding: #{$mdc-button-horizontal-padding};
-    --mdc-text-button-container-shape: #{$mdc-button-container-shape};
-    --mdc-text-button-container-height: #{$mdc-button-container-height};
-    --mat-text-button-horizontal-padding: #{$mdc-button-horizontal-padding};
+    @include mat.button-overrides(
+        (
+            container-shape: $mdc-button-container-shape,
+            container-height: $mdc-button-container-height,
+            horizontal-padding: $mdc-button-horizontal-padding,
+        )
+    );
 
-    --mdc-dialog-container-shape: 4px;
-    --mat-dialog-container-elevation-shadow: unset;
+    @include mat.icon-button-overrides(
+        (
+            state-layer-size: 32px,
+        )
+    );
 
-    --mdc-list-list-item-one-line-container-height: unset;
-    --mdc-secondary-navigation-tab-container-height: 48px;
+    @include mat.form-field-overrides(
+        (
+            filled-label-display: block,
+            filled-with-label-container-padding-top: 16px,
+            filled-with-label-container-padding-bottom: 0px,
+        )
+    );
 
-    --mdc-switch-selected-icon-size: 14px;
-    --mdc-switch-track-height: 20px;
-    --mdc-switch-track-shape: 12px;
-    --mdc-switch-track-width: 40px;
-    --mdc-switch-unselected-icon-size: 12px;
-    --mdc-switch-state-layer-size: 20px;
-    --mat-switch-selected-handle-size: 16px;
-    --mat-switch-pressed-handle-size: 16px;
-    --mat-switch-with-icon-handle-size: 18px;
-    --mat-switch-selected-handle-horizontal-margin: 0 12px;
-    --mat-switch-selected-with-icon-handle-horizontal-margin: 0 20px;
-    --mat-switch-selected-pressed-handle-horizontal-margin: 0 11px;
-    --mat-switch-unselected-handle-horizontal-margin: 0 4px;
-    --mat-switch-unselected-with-icon-handle-horizontal-margin: 0 2px;
-    --mat-switch-unselected-pressed-handle-horizontal-margin: 0 1px;
-    --mat-switch-track-outline-width: 1px;
-    --mat-switch-selected-track-outline-width: 1px;
-    --mat-switch-disabled-unselected-track-outline-width: 1px;
+    @include mat.dialog-overrides(
+        (
+            container-shape: 4px,
+            container-elevation-shadow: unset,
+        )
+    );
+
+    @include mat.list-overrides(
+        (
+            list-item-one-line-container-height: unset,
+            list-item-two-line-container-height: auto,
+            list-item-container-shape: 4px,
+            active-indicator-shape: 4px
+        )
+    );
+
+    @include mat.tabs-overrides(
+        (
+            container-height: 48px
+        )
+    );
+
+    @include mat.slide-toggle-overrides(
+        (
+            selected-icon-size: 14px,
+            track-height: 20px,
+            track-shape: 12px,
+            track-width: 40px,
+            unselected-icon-size: 12px,
+            state-layer-size: 20px,
+            selected-handle-size: 16px,
+            pressed-handle-size: 16px,
+            with-icon-handle-size: 18px,
+            selected-handle-horizontal-margin: 0 12px,
+            selected-with-icon-handle-horizontal-margin: 0 20px,
+            selected-pressed-handle-horizontal-margin: 0 11px,
+            unselected-handle-horizontal-margin: 0 4px,
+            unselected-with-icon-handle-horizontal-margin: 0 2px,
+            unselected-pressed-handle-horizontal-margin: 0 1px,
+            track-outline-width: 1px,
+            selected-track-outline-width: 1px,
+            disabled-unselected-track-outline-width: 1px
+        )
+    );
 }

@@ -24,7 +24,8 @@ import { MainComponent } from './main/main.component';
         AlertModule,
         FormsModule,
         ReactiveFormsModule,
-        CloudAppTranslateModule.forRoot()],
+        CloudAppTranslateModule.forRoot()
+    ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: () => () => true, deps: [InitService], multi: true },
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'standard' } },

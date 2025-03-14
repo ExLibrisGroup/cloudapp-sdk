@@ -9,6 +9,7 @@ import {
   Request,
   RestErrorResponse
 } from '@exlibris/exl-cloudapp-angular-lib';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
@@ -28,7 +29,8 @@ export class MainComponent implements OnInit, OnDestroy {
   constructor(
     private restService: CloudAppRestService,
     private eventsService: CloudAppEventsService,
-    private alert: AlertService
+    private alert: AlertService,
+    private translate: TranslateService,
   ) {
     this.entities$ = this.eventsService.entities$.pipe(tap(() => this.clear()));
   }
@@ -79,6 +81,10 @@ export class MainComponent implements OnInit, OnDestroy {
           console.error(e);
         }
       });
+  }
+
+  setLang(lang: string) {
+    this.translate.use(lang);
   }
 
   private tryParseJson(value: any) {
