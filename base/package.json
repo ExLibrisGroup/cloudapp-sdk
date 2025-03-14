@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-base",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Base project for Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "scripts": {
@@ -12,6 +12,6 @@
     "directory": "base"
   },
   "peerDependencies": {
-    "@exlibris/exl-cloudapp-angular-lib": "^2.0.1"
+    "@exlibris/exl-cloudapp-angular-lib": "^2.0.2"
   }
 }
