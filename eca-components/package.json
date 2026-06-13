@@ -27,7 +27,7 @@
     "@exlibris/exl-cloudapp-angular-lib": "^2.0.2",
     "@ngx-translate/core": "16.0.4",
     "@types/lodash": "4.17.16",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "ng-packagr": "18.2.1",
     "postcss": "8.4.49",
     "tslib": "2.8.1",
