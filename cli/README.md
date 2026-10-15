@@ -13,7 +13,7 @@ $ eca init
 $ eca start
 ```
 
-`eca init` requires an empty directory (it offers to empty the current one). It copies the starter app from [`@exlibris/exl-cloudapp-base`](https://github.com/ExLibrisGroup/cloudapp-sdk/tree/master/base) and prompts for the app details.
+`eca init` requires an empty directory (it offers to empty the current one). It copies the starter app from [`@exlibris/exl-cloudapp-base`](https://github.com/ExLibrisGroup/cloudapp-sdk/tree/master/base) and prompts for the app details. It then initializes a Git repository with an initial commit, unless Git isn't installed, the directory is already inside a Git repository, or you pass `--no-git`.
 
 ## Commands
 | Command | Description |
@@ -29,6 +29,11 @@ $ eca start
 | `eca agents <install\|update\|status>` | Install or update AI coding agent instructions and skills (see [agents](https://github.com/ExLibrisGroup/cloudapp-sdk/tree/master/agents)). |
 | `eca version` | Print the CLI version. |
 | `eca help` | Show help. |
+
+### `eca init` options
+| Option | Description |
+| --- | --- |
+| `--no-git` | Don't initialize a Git repository. |
 
 ### `eca start` options
 | Option | Description |

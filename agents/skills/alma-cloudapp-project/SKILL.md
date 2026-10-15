@@ -72,7 +72,9 @@ Do not assume access to Alma source code or private Ex Libris systems.
 ## New projects
 
 - Create an empty target directory.
-- Run `eca init` and answer its prompts.
+- Run `eca init` and answer its prompts. It initializes a Git repository with
+  an initial commit unless Git is missing, the directory is already inside a
+  repository, or `--no-git` is passed.
 - Use the full Alma institution URL for local development.
 - Do not manually construct `.ng/`.
 - Review the generated manifest before adding capabilities.

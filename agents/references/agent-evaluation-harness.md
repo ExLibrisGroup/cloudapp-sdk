@@ -43,7 +43,7 @@ on its default, so type the value:
 ```text
 mkdir "$APP" && cd "$APP" && [ -z "$(ls -A)" ] && expect -c '
 set timeout 90
-spawn eca init
+spawn eca init --no-git
 expect "App title"
 send "User tools\r"
 expect "App subtitle"

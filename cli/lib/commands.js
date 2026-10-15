@@ -32,6 +32,9 @@ export const flags = {
         "--skills <names>": "Comma-separated skills to install (default: all)",
         "--dry-run": "Show planned changes without writing files",
     },
+    init: {
+        "--no-git": "Do not initialize a Git repository",
+    },
     start: {
         "--no-install": "Do not install dependencies",
         "--no-open-browser": "Do not open browser after starting",
