@@ -1,0 +1,52 @@
+{
+  "name": "@exlibris/exl-cloudapp-agent",
+  "version": "2.0.2",
+  "description": "Agent and skills for creating, changing, testing, and releasing Ex Libris Alma Cloud Apps",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "alma",
+    "cloud-app",
+    "exlibris",
+    "agent",
+    "skills"
+  ],
+  "type": "commonjs",
+  "main": "dist/installer/index.js",
+  "types": "dist/installer/index.d.ts",
+  "bin": {
+    "exl-cloudapp-agent": "dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExLibrisGroup/cloudapp-sdk.git",
+    "directory": "agents"
+  },
+  "files": [
+    "agents/",
+    "dist/cli.js",
+    "dist/cli.d.ts",
+    "dist/installer/",
+    "skills/",
+    "templates/",
+    "INSTALLATION.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build": "npm run clean && tsc -p tsconfig.json && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\"",
+    "cli": "npm run build --silent && node dist/cli.js",
+    "prepack": "npm run build",
+    "test": "npm run build && node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

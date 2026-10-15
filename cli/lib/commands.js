@@ -1,4 +1,5 @@
 export const commands = {
+    agents: "Install, update, or check AI coding agent instructions and skills",
     build: "Build production-ready assets for app",
     init: "Initialize current directory",
     eject: "Eject a file or folder from the template scaffolding to the CloudApp working directory",
@@ -12,6 +13,11 @@ export const commands = {
 }
 
 export const subcommands = {
+    agents: {
+        install: "Install the agent, all or selected skills, and instruction templates",
+        update: "Update unchanged installed files to this SDK's version",
+        status: "Report missing, modified, outdated, and current installed files"
+    },
     generate: {
         class: "Creates a new generic class definition",
         directive: "Creates a new generic directive definition",
@@ -22,6 +28,10 @@ export const subcommands = {
 }
 
 export const flags = {
+    agents: {
+        "--skills <names>": "Comma-separated skills to install (default: all)",
+        "--dry-run": "Show planned changes without writing files",
+    },
     start: {
         "--no-install": "Do not install dependencies",
         "--no-open-browser": "Do not open browser after starting",

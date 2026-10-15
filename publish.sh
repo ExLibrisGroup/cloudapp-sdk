@@ -103,11 +103,22 @@ bump_version "^$new_version" base/package.json '.dependencies."@exlibris/eca-com
 echo "Publishing..."
 npm publish --tag "$dist_tag"
 
+# agents
+cd "$WORKDIR/agents"
+print_cwd
+bump_version $new_version
+echo -e "\nTesting..."
+npm install
+npm test
+echo "Publishing..."
+npm publish --tag "$dist_tag"
+
 # cli
 cd "$WORKDIR/cli"
 print_cwd
 bump_version $new_version
 bump_version "^$new_version" package.json '.dependencies."@exlibris/exl-cloudapp-angular-lib"'
 bump_version "^$new_version" package.json '.dependencies."@exlibris/exl-cloudapp-base"'
+bump_version "^$new_version" package.json '.dependencies."@exlibris/exl-cloudapp-agent"'
 echo "Publishing..."
 npm publish --tag "$dist_tag"

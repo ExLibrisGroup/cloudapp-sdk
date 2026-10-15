@@ -15,6 +15,7 @@
     "directory": "cli"
   },
   "dependencies": {
+    "@exlibris/exl-cloudapp-agent": "^2.0.2",
     "@exlibris/exl-cloudapp-angular-lib": "^2.0.2",
     "@exlibris/exl-cloudapp-base": "^2.0.2",
     "args": "5.0.3",
