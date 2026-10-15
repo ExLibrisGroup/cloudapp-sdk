@@ -2,10 +2,10 @@
 
 This repository contains the packages used to develop Ex Libris Cloud Apps. 
 
-* Angular Library which provides the functionality which interacts with Alma and the Higher Ed Platform
-* Base library which provides a sample application
+* Angular Library which provides the functionality which interacts with Alma and the Higher Ed Platform (see [angular-lib](./angular-lib/README.md))
+* Base library which provides a sample application (see [base](./base/README.md))
 * Components library with reusable Cloud App components (see [eca-components](./eca-components/README.md))
-* CLI used to manage the development environment.
+* CLI used to manage the development environment (see [cli](./cli/README.md)).
 * Agent and skills package that installs AI coding agent instructions into Cloud App projects (see [agents](./agents/README.md)).
 
 For more information on Cloud Apps, see the [Ex Libris Developer Network](https://developers.exlibrisgroup.com/cloudapps/)
