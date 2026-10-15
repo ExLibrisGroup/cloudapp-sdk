@@ -51,7 +51,8 @@ export enum EntityType {
     IEE = 'IEE',
     /** end URM-191912 */
     /** Esploro Assets */
-    IER = 'IER'
+    IER = 'IER',
+    NORMALIZATION_RULE = 'NORMALIZATION_RULE'
 }
 
 export interface PageInfo extends Response {

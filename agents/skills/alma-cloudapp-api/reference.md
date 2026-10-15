@@ -252,7 +252,8 @@ SDK 2.0.2 declares:
 `CITATION`, `AUTHORITY`, `HOLDING`, `IEPA`, `IEC`, `PO_LINE`, `PORTFOLIO`,
 `INVOICE`, `ELECTRONIC_SERVICE`, `INVOICE_LINE`, `LOAN`, `REPRESENTATION`,
 `REPRESENTATION_FILE`, `VENDOR`, `FUND`, `REMINDER`, `BORROWING_REQUEST`,
-`LENDING_REQUEST`, `SET`, `PARTNER`, `FEES`, `IEP`, `IEE`, and `IER`.
+`LENDING_REQUEST`, `SET`, `PARTNER`, `FEES`, `IEP`, `IEE`, `IER`, and
+`NORMALIZATION_RULE`.
 
 An enum value does not prove that every Alma page emits that entity. Validate
 the target page.
