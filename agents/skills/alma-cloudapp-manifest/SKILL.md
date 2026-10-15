@@ -94,7 +94,7 @@ Cloud App Center and the opened-app header.
 
 Read `reference.md` in this skill directory.
 
-Known SDK 2.0.2 documentation drift:
+Known SDK 2.1.0 documentation drift:
 
 - Use `@exlibris/eca-components`, not the old unscoped package.
 - Do not copy obsolete `entryComponents` guidance.

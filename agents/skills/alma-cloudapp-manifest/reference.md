@@ -1,6 +1,6 @@
 # Alma Cloud App manifest reference
 
-Baseline: SDK 2.0.2. The installed package schema is authoritative.
+Baseline: SDK 2.1.0. The installed package schema is authoritative.
 
 Before treating a manifest field or referenced resource as unused, trace SDK
 and build packaging, application routes and runtime loading, and Alma host
@@ -31,7 +31,7 @@ Before build or browser validation:
 5. Confirm the root manifest and the SDK-generated or synchronized asset
    manifest represent the same intended configuration.
 
-For SDK 2.0.2, a successful Angular or `eca build` does not by itself prove
+For SDK 2.1.0, a successful Angular or `eca build` does not by itself prove
 manifest schema validity. A malformed manifest may compile while preventing
 the development app card from rendering correctly in Alma.
 
@@ -157,6 +157,6 @@ current `config.json` does not provide a separate arbitrary-backend proxy.
 ## Schema limitation
 
 Public documentation describes `widgetHeightPx` as an integer from 300 to 1000.
-The SDK 2.0.2 schema declares a number but does not encode all of those
+The SDK 2.1.0 schema declares a number but does not encode all of those
 constraints. Follow the documented range even when schema validation accepts a
 broader value.

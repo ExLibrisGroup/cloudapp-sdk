@@ -1,6 +1,6 @@
 # Known Alma Cloud Apps documentation drift
 
-Baseline comparison: public SDK 2.0.2.
+Baseline comparison: public SDK 2.1.0.
 
 | Topic | Older documentation pattern | Current baseline |
 |---|---|---|

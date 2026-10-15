@@ -1,6 +1,6 @@
 # Library Open Workflows reference
 
-Baseline: Cloud App SDK 2.0.2, Angular 18.2, and the public Alma
+Baseline: Cloud App SDK 2.1.0, Angular 18.2, and the public Alma
 Configuration API "Run Workflow" documentation retrieved 2026-09-28. LibOW/n8n
 behavior below follows public n8n documentation; confirm it against the
 LibOW instance the user supplies.
@@ -40,7 +40,7 @@ the authority. Do not infer a response schema that is not documented.
 
 ## Run Workflow through the SDK
 
-SDK 2.0.2 facts:
+SDK 2.1.0 facts:
 
 - `CloudAppRestService.call()` removes a leading `/almaws/v1`; use
   `/conf/workflows/{id}`.
@@ -139,7 +139,7 @@ A webhook call is a direct browser request, so list the LibOW regional origins
 
 ## Call the webhook
 
-SDK 2.0.2 registers no HTTP interceptors, so the application's injected
+SDK 2.1.0 registers no HTTP interceptors, so the application's injected
 `HttpClient` sends the request unchanged. Build an `HttpClient` from
 `HttpBackend` only when the project registers its own interceptors that must
 not apply to the webhook.

@@ -99,7 +99,7 @@ Run:
 eca extract-labels
 ```
 
-In SDK 2.0.2 this scans `cloudapp/src`, cleans and sorts the extracted key
+In SDK 2.1.0 this scans `cloudapp/src`, cleans and sorts the extracted key
 inventory, and writes `cloudapp/src/i18n/_.json` in namespaced JSON format.
 
 - Review `_.json`; do not treat it as a translated locale.

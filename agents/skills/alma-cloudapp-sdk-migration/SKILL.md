@@ -77,7 +77,7 @@ skill's production-safety rules.
 
 ## Current `eca update` behavior
 
-For SDK 2.0.2, the updater:
+For SDK 2.1.0, the updater:
 
 - Reads the old base version from `package-lock.json`.
 - Reads the target dependency set from the globally installed CLI's bundled

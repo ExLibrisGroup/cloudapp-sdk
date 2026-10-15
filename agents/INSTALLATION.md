@@ -213,7 +213,7 @@ credential, production-mutation, iframe, or relative-request boundaries.
 
 The current bundled baseline is:
 
-- Cloud App SDK 2.0.2.
+- Cloud App SDK 2.1.0.
 - Angular 18.2.x.
 - Angular Material 18.2.x.
 - TypeScript 5.5.x.

@@ -23,7 +23,7 @@ Use this order:
 4. Current official publication documentation.
 
 Do not assume that `eca build` installs dependencies or performs the hosted
-security audit. It does neither in SDK 2.0.2.
+security audit. It does neither in SDK 2.1.0.
 
 ## Release readiness
 

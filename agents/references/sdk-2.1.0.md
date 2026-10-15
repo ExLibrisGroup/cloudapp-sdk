@@ -1,19 +1,24 @@
-# Alma Cloud App SDK 2.0.2 baseline
+# Alma Cloud App SDK 2.1.0 baseline
 
-Prepared: 2026-08-30
+Prepared: 2026-10-15
 
-Public commit:
+Based on public commit `5c3b11e1fcc6ef305601ecf0775285005168b1bb` (2.0.2)
+plus the 2.1.0 changes:
 
-`5c3b11e1fcc6ef305601ecf0775285005168b1bb`
+- `EntityType.NORMALIZATION_RULE` in `@exlibris/exl-cloudapp-angular-lib`.
+- The `eca agents` command and the `@exlibris/exl-cloudapp-agent` package.
+- `eca init` initializes a Git repository with an initial commit (`--no-git`
+  skips it).
 
 ## Packages
 
 | Package | Version |
 |---|---:|
-| `@exlibris/exl-cloudapp-cli` | 2.0.2 |
-| `@exlibris/exl-cloudapp-base` | 2.0.2 |
-| `@exlibris/exl-cloudapp-angular-lib` | 2.0.2 |
-| `@exlibris/eca-components` | 2.0.2 |
+| `@exlibris/exl-cloudapp-cli` | 2.1.0 |
+| `@exlibris/exl-cloudapp-base` | 2.1.0 |
+| `@exlibris/exl-cloudapp-angular-lib` | 2.1.0 |
+| `@exlibris/eca-components` | 2.1.0 |
+| `@exlibris/exl-cloudapp-agent` | 2.1.0 |
 
 ## Main technology versions
 
@@ -74,7 +79,7 @@ stale.
   `main.scss`.
 - `main.scss` supplies `themed-styles($theme, $typography)` and
   `global-styles()` mixins.
-- SDK 2.0.2 uses Angular Material 3 theme definitions and
+- SDK 2.1.0 uses Angular Material 3 theme definitions and
   `mat.get-theme-color(...)`.
 - The named color themes are light themes; names such as `dark_blue` do not
   indicate dark mode.

@@ -1,6 +1,6 @@
 # Alma Cloud App styles and theming reference
 
-Baseline: Cloud App SDK 2.0.2 and Angular Material 18.2.x. The installed
+Baseline: Cloud App SDK 2.1.0 and Angular Material 18.2.x. The installed
 project and matching public SDK source are authoritative.
 
 ## Current style assembly
@@ -97,7 +97,7 @@ active Alma theme.
 `cloudapp-theme--...` class from the app's own body, and applies the current
 class. Application code should not duplicate this behavior.
 
-SDK 2.0.2 currently defines these named Alma color themes:
+SDK 2.1.0 currently defines these named Alma color themes:
 
 ```text
 blue
@@ -249,7 +249,7 @@ document.
 The public style tutorial remains useful for interaction concepts such as
 actions, loading indicators, lists, empty states, confirmation, and alerts.
 Its older Angular Material/Sass examples are not the API authority for SDK
-2.0.2. Use the installed Material 3 theme implementation.
+2.1.0. Use the installed Material 3 theme implementation.
 
 ## Review checklist
 

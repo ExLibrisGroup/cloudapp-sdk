@@ -23,7 +23,7 @@ styles, release, and validation skills as applicable.
 4. Keep test source under `cloudapp/`; do not make lasting edits in `.ng/`.
 5. Run the smallest test selection that covers the change.
 
-For SDK 2.0.2, the generated project uses:
+For SDK 2.1.0, the generated project uses:
 
 - Jasmine 5.2.
 - Karma 6.4.

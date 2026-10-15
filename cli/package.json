@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-cli",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Base project for Ex Libris Cloud Apps",
   "license": "SEE LICENSE IN <LICENSE.md>",
   "main": "index.js",
@@ -15,9 +15,9 @@
     "directory": "cli"
   },
   "dependencies": {
-    "@exlibris/exl-cloudapp-agent": "^2.0.2",
-    "@exlibris/exl-cloudapp-angular-lib": "^2.0.2",
-    "@exlibris/exl-cloudapp-base": "^2.0.2",
+    "@exlibris/exl-cloudapp-agent": "^2.1.0",
+    "@exlibris/exl-cloudapp-angular-lib": "^2.1.0",
+    "@exlibris/exl-cloudapp-base": "^2.1.0",
     "args": "5.0.3",
     "chalk": "5.4.1",
     "cheerio": "1.0.0",

@@ -1,6 +1,6 @@
 # Alma Cloud App testing reference
 
-## SDK 2.0.2 test pipeline
+## SDK 2.1.0 test pipeline
 
 The public SDK implementation performs these steps for `eca test`:
 
@@ -16,7 +16,7 @@ The generated Angular target uses
 `tsconfig.spec.json`, application assets, translation files, and generated
 styles.
 
-The SDK 2.0.2 starter pins:
+The SDK 2.1.0 starter pins:
 
 | Package | Version |
 |---|---|

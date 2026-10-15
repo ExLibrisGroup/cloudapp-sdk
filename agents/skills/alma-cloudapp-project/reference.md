@@ -46,7 +46,7 @@ continue using a speculative source.
 
 ## Local configuration
 
-`config.json` configures the Cloud App CLI's local workflow. SDK 2.0.2 expects:
+`config.json` configures the Cloud App CLI's local workflow. SDK 2.1.0 expects:
 
 | Field | Local purpose |
 |---|---|
@@ -72,7 +72,7 @@ specific.
 
 ## Configuration processing
 
-When `eca start` runs, SDK 2.0.2:
+When `eca start` runs, SDK 2.1.0:
 
 1. Reads and validates `config.json`.
 2. Prompts for missing or invalid fields.
@@ -111,7 +111,7 @@ skipped. Use `--no-open-browser` when browser startup is managed separately.
 Browser selection can be provided with `--browser <name>` or the
 `ECA_BROWSER` environment variable. The command-line option takes precedence.
 
-The configured port defaults to `4200`. SDK 2.0.2 accepts ports `80`, `443`,
+The configured port defaults to `4200`. SDK 2.1.0 accepts ports `80`, `443`,
 or `1025` through `65534`. The generated server is still opened with an
 `http://localhost:<port>` URL; selecting port `443` does not configure a local
 TLS certificate or make the Angular server HTTPS.
@@ -147,7 +147,7 @@ of `config.json`'s `env` value. This allows the Alma shell, authentication flow,
 and related same-origin requests to run through localhost while local Cloud
 App assets are served by the Angular development server.
 
-For local compatibility, the SDK 2.0.2 proxy:
+For local compatibility, the SDK 2.1.0 proxy:
 
 - Disables target-certificate verification.
 - Removes `SameSite` and `Secure` attributes from response cookies.
@@ -225,7 +225,7 @@ For direct external API calls:
 - Use `CloudAppEventsService.getAuthToken()` when that backend must verify the
   Cloud App/Alma context.
 
-The SDK 2.0.2 CLI has no `config.json` field for arbitrary backend proxy
+The SDK 2.1.0 CLI has no `config.json` field for arbitrary backend proxy
 routes. Do not add undocumented fields and expect `eca start` to route them.
 
 Do not use a relative path to hide the external service behind the Alma proxy

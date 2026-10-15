@@ -128,7 +128,7 @@ Before changing or debugging local startup:
 6. Do not rely on the local Alma proxy as an application backend.
 7. Check development and published behavior separately.
 
-For SDK 2.0.2, `config.json` provides the app metadata used during
+For SDK 2.1.0, `config.json` provides the app metadata used during
 initialization, the target Alma URL, and the local port. It does not define
 arbitrary proxy routes, external service credentials, or production hosting.
 

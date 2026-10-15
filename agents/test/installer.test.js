@@ -33,7 +33,7 @@ async function createCloudApp(t) {
       name: 'test-cloudapp',
       private: true,
       dependencies: {
-        '@exlibris/exl-cloudapp-base': '2.0.2',
+        '@exlibris/exl-cloudapp-base': '2.1.0',
       },
     }, null, 2)}\n`,
   );
@@ -183,7 +183,7 @@ test('status rejects metadata paths outside the Cloud App', async t => {
     path.join(target, METADATA_FILE),
     `${JSON.stringify({
       schemaVersion: 1,
-      distribution: { name: '@exlibris/exl-cloudapp-agent', version: '2.0.2' },
+      distribution: { name: '@exlibris/exl-cloudapp-agent', version: '2.1.0' },
       skills: [],
       files: {
         '../outside.md': {

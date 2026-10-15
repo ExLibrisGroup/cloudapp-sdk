@@ -1,6 +1,6 @@
 # Alma Cloud App public SDK API reference
 
-Baseline: SDK 2.0.2. Recheck against the local installed version.
+Baseline: SDK 2.1.0. Recheck against the local installed version.
 
 This file covers the Cloud App transport and shared implementation rules. Use
 `api-catalog.md` and `areas/` for the Alma endpoint catalog.
@@ -94,7 +94,7 @@ support.
 ### Cloud App JWT and authorized backends
 
 Use `CloudAppEventsService.getAuthToken()` when an external backend must verify
-the Cloud App and Alma user context. SDK 2.0.2 requests `JWT_AUTH_TOKEN` from
+the Cloud App and Alma user context. SDK 2.1.0 requests `JWT_AUTH_TOKEN` from
 the parent and returns `response.jwt`; Alma, not the SDK, creates the token.
 
 Public documentation ([Events Service](https://developers.exlibrisgroup.com/cloudapps/docs/api/events-service/)
@@ -246,7 +246,7 @@ live-confirmed conclusion.
 
 ## Entities
 
-SDK 2.0.2 declares:
+SDK 2.1.0 declares:
 
 `BIB_MMS`, `LICENSE`, `USER`, `ITEM`, `COURSE`, `READING_LIST`, `REQUEST`,
 `CITATION`, `AUTHORITY`, `HOLDING`, `IEPA`, `IEC`, `PO_LINE`, `PORTFOLIO`,
@@ -301,7 +301,7 @@ Store:
 - Appropriate for drafts, caches, and local state that should not become
   institution configuration.
 
-## Known SDK 2.0.2 cautions
+## Known SDK 2.1.0 cautions
 
 - Public types still use `any` in several places.
 - Forms returned by helper services are untyped forms.

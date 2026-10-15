@@ -2,7 +2,7 @@
 
 ## SDK build behavior
 
-In public Cloud App SDK 2.0.2, `eca build`:
+In public Cloud App SDK 2.1.0, `eca build`:
 
 1. Sets `NODE_ENV` to `production`.
 2. synchronizes the generated `.ng/` workspace from SDK and project-owned

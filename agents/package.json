@@ -1,6 +1,6 @@
 {
   "name": "@exlibris/exl-cloudapp-agent",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Agent and skills for creating, changing, testing, and releasing Ex Libris Alma Cloud Apps",
   "license": "BSD-3-Clause",
   "keywords": [

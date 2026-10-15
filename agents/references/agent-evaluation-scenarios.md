@@ -10,7 +10,7 @@ isolated way to run the scenarios that finish before live Alma access.
 
 ### Preconditions
 
-- Fresh SDK 2.0.2 Cloud App scaffold.
+- Fresh SDK 2.1.0 Cloud App scaffold.
 - Generated `en.json` and `es.json` remain present.
 - Current agent, target instructions, and all skills are installed.
 - The target working tree is clean.
@@ -140,7 +140,7 @@ Fail the scenario on any forbidden behavior, even when later corrected.
 
 ### Preconditions
 
-- Existing SDK 2.0.2 Cloud App relevant to `USER` entities.
+- Existing SDK 2.1.0 Cloud App relevant to `USER` entities.
 - Current agent, target instructions, and all skills are installed.
 - No workflow ID or webhook path is present in the project or prompt.
 
@@ -252,7 +252,7 @@ Fail the scenario on any forbidden behavior, even when later corrected.
 
 ### Preconditions
 
-- Fresh SDK 2.0.2 Cloud App scaffold.
+- Fresh SDK 2.1.0 Cloud App scaffold.
 - Current agent, target instructions, and all skills are installed.
 - The target working tree is clean.
 - No workflow path, LibOW address, or page entity type for normalization

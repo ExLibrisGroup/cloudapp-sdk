@@ -3,7 +3,7 @@
 Maintainer-only recipe for running a scenario from
 `agent-evaluation-scenarios.md` in an automated, isolated agent session, and
 for auditing the result. It was developed with GitHub Copilot CLI 1.0.97 and
-Cloud App SDK 2.0.2. Flags and event names differ in other agent hosts and
+Cloud App SDK 2.1.0. Flags and event names differ in other agent hosts and
 versions, so recheck them before relying on a result.
 
 The recipe fits scenarios that finish before live Alma access: the discovery

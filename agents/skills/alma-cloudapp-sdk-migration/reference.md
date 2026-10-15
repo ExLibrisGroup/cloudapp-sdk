@@ -3,7 +3,7 @@
 ## Target selection
 
 `eca update` is controlled by the CLI executable that is actually invoked.
-SDK 2.0.2 reads:
+SDK 2.1.0 reads:
 
 - The current base version from the project's `package-lock.json`.
 - The target base and dependency versions from the global CLI installation's
@@ -29,7 +29,7 @@ the project.
 
 ## Update phases
 
-The SDK 2.0.2 updater performs:
+The SDK 2.1.0 updater performs:
 
 1. Version comparison.
 2. User confirmation.
@@ -49,7 +49,7 @@ and commit the resulting lockfile, then use `npm ci` for reproducibility.
 
 ## Defined migration thresholds
 
-SDK 2.0.2 source defines two threshold migrations:
+SDK 2.1.0 source defines two threshold migrations:
 
 | Threshold | Transformation |
 |---|---|

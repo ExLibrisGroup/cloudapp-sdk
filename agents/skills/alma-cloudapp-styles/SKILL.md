@@ -35,7 +35,7 @@ workflow, action hierarchy, navigation, feedback, or state presentation.
 
 ## SDK 2 theme pipeline
 
-In SDK 2.0.2:
+In SDK 2.1.0:
 
 - `InitService` receives Alma's current color in initialization data.
 - It applies `cloudapp-theme--<color>` to the Cloud App document body.
@@ -78,7 +78,7 @@ Sass migration as part of an unrelated styling change.
   weights, or type scales.
 - Do not depend on SDK-private Sass variables, generated palette files, or
   internal Material/MDC class names.
-- Do not interpret color names such as `dark_blue` as dark mode. SDK 2.0.2
+- Do not interpret color names such as `dark_blue` as dark mode. SDK 2.1.0
   supplies light themes for its named Alma color choices.
 - Do not introduce an independent application theme unless explicitly
   required and compatible with Alma's theme behavior.

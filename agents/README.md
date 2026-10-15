@@ -155,7 +155,7 @@ version-sensitive.
 
 The bundled references were prepared against:
 
-- Cloud App SDK package version `2.0.2`.
+- Cloud App SDK package version `2.1.0`.
 - Public SDK commit `5c3b11e1fcc6ef305601ecf0775285005168b1bb`.
 - Angular 18.2.x.
 - TypeScript 5.5.x.

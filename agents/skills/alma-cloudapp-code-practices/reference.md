@@ -1,11 +1,11 @@
 # Alma Cloud App code-practices reference
 
-Baseline: Cloud App SDK 2.0.2, Angular 18.2.x, TypeScript 5.5.x, and RxJS 7.8.x.
+Baseline: Cloud App SDK 2.1.0, Angular 18.2.x, TypeScript 5.5.x, and RxJS 7.8.x.
 The installed project and its local conventions are authoritative.
 
 ## Baseline compiler expectations
 
-The SDK 2.0.2 generated workspace enables:
+The SDK 2.1.0 generated workspace enables:
 
 - TypeScript `strict`.
 - `noImplicitOverride`.
@@ -269,7 +269,7 @@ project-owned UI usually carries application-specific translations,
 accessibility behavior, styling, loading states, and tests that a replacement
 would otherwise need to reproduce.
 
-For SDK 2.0.2, inspect these public facilities before creating equivalents:
+For SDK 2.1.0, inspect these public facilities before creating equivalents:
 
 | Package | Facilities |
 |---|---|

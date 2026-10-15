@@ -1,6 +1,6 @@
 # Alma Cloud App translation reference
 
-Baseline: Cloud App SDK 2.0.2 and `@ngx-translate/core` 16.x. The installed
+Baseline: Cloud App SDK 2.1.0 and `@ngx-translate/core` 16.x. The installed
 project and matching public SDK source remain authoritative.
 
 ## Runtime loading
@@ -90,7 +90,7 @@ Use `instant()` only where loading is already guaranteed.
 
 ## Extraction behavior
 
-The SDK 2.0.2 CLI invokes the installed extractor with:
+The SDK 2.1.0 CLI invokes the installed extractor with:
 
 ```text
 --input cloudapp/src
@@ -130,7 +130,7 @@ Do not add a broad missing-translation handler that hides catalog defects.
 ## Pluralization and custom parsers
 
 The public translation tutorial's custom-parser example imports the obsolete
-`LazyTranslateLoader`. SDK 2.0.2 exports `HttpTranslateLoader` instead.
+`LazyTranslateLoader`. SDK 2.1.0 exports `HttpTranslateLoader` instead.
 
 Before adding a plural or ICU parser:
 
@@ -179,8 +179,8 @@ translation keys are not resolved in the Cloud App Center.
 ## Documentation drift
 
 - The public tutorial's `LazyTranslateLoader` example is obsolete for SDK
-  2.0.2; use the installed SDK's `HttpTranslateLoader`.
-- The tutorial describes extraction as merging translation files. SDK 2.0.2
+  2.1.0; use the installed SDK's `HttpTranslateLoader`.
+- The tutorial describes extraction as merging translation files. SDK 2.1.0
   instead writes a clean, sorted `_.json` key inventory.
 - Tutorial concepts for directives, pipes, `TranslateService`, language
   switching, and text direction remain useful when checked against the

@@ -10,7 +10,7 @@ description: >-
 
 # Alma Cloud App Library Open Workflows workflow
 
-Baseline: Cloud App SDK 2.0.2 and the public Alma "Run Workflow" operation
+Baseline: Cloud App SDK 2.1.0 and the public Alma "Run Workflow" operation
 documentation retrieved 2026-09-28. Recheck both against the target project and
 current documentation.
 
@@ -149,7 +149,7 @@ Collect and confirm:
 
 - **Documentation-derived:** Run Workflow path, `test` parameter,
   prerequisites, payload forwarding, and error codes.
-- **SDK-confirmed (2.0.2):** `CloudAppRestService` strips a leading
+- **SDK-confirmed (2.1.0):** `CloudAppRestService` strips a leading
   `/almaws/v1`, converts host-reported errors into `RestError` with the
   reported `status`, and neither SDK package registers HTTP interceptors.
 - **Unverified:** whether the API returns before or after the workflow
