@@ -79,6 +79,8 @@ cd dist
 echo -e "\nPublishing..."
 npm publish --tag "$dist_tag"
 
+echo "Waiting for @exlibris/exl-cloudapp-angular-lib@$new_version on npm..."
+until npm view "@exlibris/exl-cloudapp-angular-lib@$new_version" version --prefer-online >/dev/null 2>&1; do sleep 10; done
 
 cd "$WORKDIR/eca-components"
 print_cwd
